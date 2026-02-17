@@ -41,6 +41,8 @@ Our comprehensive guide explaining:
 
 **Read it like:** A tutorial from a friend who's been there
 
+> 🌎 **Spanish version available:** [`article_es.md`](article_es.md) - Versión completa en español
+
 ### 🛠️ AGENTS.md - The "How"
 **Reference this during development**
 
