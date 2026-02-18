@@ -2,6 +2,8 @@
 
 **A Production-Ready API Foundation Built with Vibe Coding**
 
+![LaunchPad API Promo](docs-graphics/promo_horizontal_en.png)
+
 Built in days, not months. Documented for entrepreneurs, developers, and AI assistants.
 
 ---
