@@ -1,6 +1,166 @@
 # Vibe Coding para Tu Primera API: Cómo Construimos LaunchPad API en Días (No Meses)
 
+![Promoción LaunchPad API](docs-graphics/promo_horizontal_es.png)
+
 *Una guía práctica para emprendedores que quieren construir su backend sin contratar a un desarrollador ni ahogarse en complejidad técnica*
+
+---
+
+## Cómo Usar Esta Guía (Sí, Es Larga—Y Eso Es Bueno)
+
+Seamos honestos desde el principio: esta guía es extensa. Si buscas un tutorial rápido del tipo "copia y pega este código y tendrás una API en 10 minutos", te vas a decepcionar. Y sinceramente, eso es algo bueno, porque esos tutoriales rápidos son exactamente por lo que tantos emprendedores terminan con sistemas rotos e inseguros que les cuestan miles de dólares arreglar después.
+
+### Por Qué La Hicimos Así
+
+Cuando comencé a aprender a construir software, me frustraba exactamente lo mismo que tú podrías estar sintiendo ahora. Cada tutorial se saltaba las partes que realmente necesitaba entender. Decían "solo ejecuta este comando" sin explicar por qué. Pasaban por alto consideraciones de seguridad porque "eso es cosa de avanzados." Asumían que ya sabía qué era un "ORM" o por qué importa el "middleware."
+
+Seguía chocando contra paredes donde las cosas no funcionaban y no tenía idea de por qué. Pasaba horas buscando en Google mensajes de error que no tenían sentido para mí. Seguía un tutorial paso a paso solo para descubrir que estaba escrito para una versión antigua del software, y ahora nada funcionaba.
+
+Así que cuando escribimos esta guía, tomamos una decisión deliberada: **vamos a explicar todo.** No porque pensemos que no eres lo suficientemente inteligente para resolverlo, sino porque no deberías tener que hacerlo. Construir software ya es suficientemente difícil sin tener que descifrar lo que la documentación asume que ya sabes.
+
+Esta guía es larga porque:
+
+- **Explicamos el "por qué" detrás de cada decisión**, no solo el "qué" y el "cómo"
+- **Compartimos los errores que cometimos** para que tú puedas evitarlos (cometimos muchos)
+- **Proporcionamos contexto** sobre cómo encajan las diferentes piezas
+- **Documentamos alternativas** que consideramos y por qué elegimos lo que elegimos
+- **Incluimos solución de problemas** para los obstáculos que realmente encontrarás
+
+### Tres Formas de Leer Esta Guía
+
+Dependiendo de dónde estés en tu camino, tienes tres opciones:
+
+**Ruta 1: La Inmersión Profunda (Recomendada si tienes tiempo)**
+
+Léela de principio a fin. Sí, es larga, pero terminarás con una comprensión completa no solo de cómo construir una API, sino de cómo funcionan las APIs, por qué están estructuradas como están, y cómo solucionar problemas cuando inevitablemente ocurran. Esta es la ruta que mejor te servirá a largo plazo porque realmente entenderás lo que estás construyendo.
+
+**Ruta 2: El Vistazo Estratégico (Si necesitas avanzar rápido)**
+
+Lee estas secciones primero:
+1. **Esta introducción** (estás aquí ahora)
+2. **El Problema Que Todos Enfrentamos** – para entender si esta guía realmente es para ti
+3. **¿Qué es el "Vibe Coding"?** – para entender la metodología
+4. **El Stack Técnico** – para entender con qué estamos construyendo (ojea los detalles técnicos, enfócate en las analogías)
+5. **La Visión General Completa de la Arquitectura** – para ver el panorama general
+6. **Guía de Inicio Rápido** – para ponerte en marcha rápido
+
+Luego usa el resto como referencia cuando lo necesites. Vuelve a secciones específicas cuando encuentres esos problemas en tu propio proceso de construcción.
+
+**Ruta 3: El Rescate "Estoy Atascado" (Para cuando las cosas salen mal)**
+
+Usa la tabla de contenidos para saltar directamente a la sección que coincida con tu problema actual:
+- ¿No puedes hacer funcionar el servidor? → La sección de Instalación Completa
+- ¿Confundido sobre autenticación? → Entendiendo la Autenticación y Shield
+- ¿Recibes mensajes de error extraños? → Solución de Problemas Comunes
+- ¿No estás seguro si tu API es segura? → Inmersión Profunda en Seguridad
+- ¿Necesitas entender la estructura de la base de datos? → Arquitectura de Base de Datos
+- ¿Listo para desplegar pero no sabes por dónde empezar? → Día 5: Llevando Tu API a Internet
+- ¿Recibes "Error 500 del Servidor Interno" en producción? → Día 5: Solución de Problemas de Despliegue
+- ¿La conexión a la base de datos falla en el servidor? → Día 5: Configuración de Base de Datos en Producción
+
+### Lo Que Realmente Vas a Construir
+
+Al seguir esta guía, crearás LaunchPad API—un sistema de autenticación y gestión de usuarios listo para producción que incluye:
+
+- Registro de usuarios e inicio de sesión (con verificación de email)
+- Manejo seguro de contraseñas (ni siquiera almacenarás las contraseñas tú mismo)
+- Tokens de API para autenticación de aplicaciones móviles
+- Grupos de usuarios y permisos (administradores, usuarios regulares, etc.)
+- Un framework completo de pruebas
+- Protecciones de seguridad contra ataques comunes
+- **Despliegue completo a hosting en vivo** (hosting compartido, dominio, SSL, base de datos)
+- Configuración de monitoreo, respaldos y mantenimiento
+- Documentación completa de cada decisión
+
+Este no es un proyecto de juguete. Es la base que usan negocios reales. Cuando termines, tendrás algo **en vivo en internet** que podrías usar para una aplicación real—no solo código ejecutándose en tu laptop.
+
+### El Cambio de Mentalidad Que Hace Que Esto Funcione
+
+Aquí está la cosa sobre aprender a construir software: no se trata de memorizar comandos o sintaxis. Se trata de entender patrones y principios. Una vez que entiendes por qué algo funciona, puedes aplicar ese entendimiento a nuevas situaciones incluso cuando los detalles específicos cambian.
+
+Piensa en esta guía como aprender a cocinar versus seguir una receta. Una receta te dice "agrega 2 tazas de harina y hornea a 350°F por 30 minutos." Aprender a cocinar significa entender por qué usas harina (estructura), por qué 350°F (reacción de Maillard sin quemar), y por qué 30 minutos (cuajar proteínas y almidones).
+
+Te estamos enseñando a cocinar, no solo a seguir recetas. Por eso nos tomamos el tiempo de explicar el razonamiento. Cuando entiendes el razonamiento, puedes adaptarte cuando tu situación es diferente. Cuando solo sigues recetas, estás perdido en el momento en que algo no coincide exactamente.
+
+### Un Mapa de Lo Que Viene
+
+Esto es lo que cubre esta guía, en orden:
+
+**Parte 1: Entendiendo el Panorama** (Estás aquí)
+- El problema que estamos resolviendo y por qué las soluciones existentes fallan
+- Lo que realmente significa Vibe Coding y por qué funciona
+- Por qué elegimos las herramientas específicas que elegimos (PHP, CodeIgniter 4, Shield)
+- El caso de negocio para construir tu API primero (antes de tu aplicación móvil)
+
+**Parte 2: Configurando Tu Entorno**
+- Instalando todo lo que necesitas (PHP, Composer, base de datos)
+- Configurando tu entorno de desarrollo
+- Entendiendo la estructura del proyecto
+- Configurando control de versiones (Git)
+
+**Parte 3: La Fundación—CodeIgniter 4**
+- Cómo funciona realmente el framework (rutas, controladores, modelos)
+- El patrón MVC explicado en términos humanos
+- Archivos de configuración y qué controlan
+- Herramientas de depuración y desarrollo
+
+**Parte 4: Autenticación con Shield**
+- Por qué la autenticación es tan compleja (y por qué necesita serlo)
+- Entendiendo tokens, sesiones y seguridad
+- Configurando registro de usuarios e inicio de sesión
+- Configurando permisos y grupos de usuarios
+- Probando tu sistema de autenticación
+
+**Parte 5: Construyendo Funcionalidades Reales**
+- Creando tus primeros endpoints de API
+- Manejando validación de datos y mensajes de error
+- Diseño de base de datos y migraciones
+- Subida de archivos y manejo de imágenes
+- Rate limiting y rendimiento
+
+**Parte 6: Seguridad, CORS y el Puente a Producción**
+- Lista de verificación de seguridad y vulnerabilidades comunes
+- Configuración de CORS (qué es y por qué lo necesitas)
+- HTTPS y certificados SSL
+- Configuración de entorno para producción
+
+**Parte 7: Día 5—Llevando Tu API a Internet (Pasos Reales de Despliegue)**
+- Elegir hosting compartido vs. VPS (y por qué el compartido gana para startups)
+- Paso a paso: Preparando tu app para producción
+- Creando y migrando tu base de datos de producción
+- Subiendo archivos vía FTP/SFTP o despliegue con Git
+- Configurando tu dominio y DNS
+- Configurando certificados SSL gratuitos
+- Probando todo antes del lanzamiento
+- Monitoreo, respaldos y mantenimiento
+
+**Parte 8: Documentación y Mantenimiento**
+- Documentando tu API para otros desarrolladores
+- Escribiendo pruebas que realmente detecten errores
+- Depurando problemas de producción
+- Actualizando dependencias de forma segura
+
+### La Decisión de Documentar Todo
+
+Una cosa más antes de sumergirnos: notarás que documentamos cada decisión que tomamos. ¿Por qué PHP y no Node.js? ¿Por qué CodeIgniter y no Laravel? ¿Por qué este enfoque de autenticación y no aquel?
+
+Hacemos esto por tres razones:
+
+1. **Para que entiendas** – Saber por qué ayuda a que el conocimiento se adhiera
+2. **Para que puedas decidir diferente** – Tu situación podría ser diferente de la nuestra. Si entiendes nuestro razonamiento, puedes hacer una elección informada de hacer las cosas diferente
+3. **Para que puedas explicar a otros** – Cuando inevitablemente trabajes con otros desarrolladores (o inversores, o socios), podrás articular por qué tu sistema está construido como está
+
+No estamos diciendo que nuestras elecciones son las únicas elecciones correctas. Estamos diciendo que estas son las elecciones que hicimos, aquí está por qué las hicimos, y aquí está lo que aprendimos de ellas. Toma lo que funcione para ti, cuestiona lo que no, y construye algo que se ajuste a tus necesidades específicas.
+
+### Discurso de Ánimo Final (Porque Lo Vas a Necesitar)
+
+Construir software es difícil. No hay forma de evitarlo. Pero no es imposible, y no necesitas un título en ciencias de la computación para hacerlo. Necesitas persistencia, curiosidad y la voluntad de sentarte con la confusión hasta que tenga sentido.
+
+Vas a tener momentos donde nada funcione y no tengas idea de por qué. Eso es normal. Eso es parte del proceso. La diferencia entre las personas que construyen software exitosamente y las que se rinden no es la inteligencia—es la voluntad de seguir adelante cuando las cosas se ponen frustrantes.
+
+Esta guía está aquí para reducir esa frustración tanto como sea posible, pero no puede eliminarla por completo. Construir cosas es inherentemente caótico. Abraza el caos. Aprende de él. Y recuerda que cada mensaje de error es solo la computadora intentando decirte algo—podría estar hablando en un idioma extranjero ahora, pero al final de esta guía, serás fluido.
+
+¿Listo? Vamos a construir algo real.
 
 ---
 
@@ -45,6 +205,8 @@ Esto es lo que incluye LaunchPad API:
 Construimos esto en días, no meses. Y te vamos a mostrar exactamente cómo, para que puedas hacer lo mismo para tu proyecto.
 
 ## El Stack Técnico: Explicado Simplemente
+
+![Flujo del Stack Técnico](docs-graphics/flow_horizontal_es.png)
 
 Antes de sumergirnos en el proceso, hablemos de con qué estamos construyendo realmente. Si eres completamente nuevo en esto, estos conceptos pueden sonar intimidantes. No lo son. Piensa en ellos como los ingredientes de una receta—no necesitas saber química orgánica para hornear un pastel.
 
@@ -390,6 +552,242 @@ Para LaunchPad API, Laragon nos dio un entorno estable, rápido y fácil de usar
 
 Si estás comenzando, nuestro consejo es simple: No intentes ser un administrador de sistemas y un desarrollador al mismo tiempo. Deja que herramientas como Laragon manejen la infraestructura para que puedas enfocarte en construir tu producto.
 
+## El Peligro Oculto: Por Qué Tu Archivo `.env` Es Más Importante De Lo Que Piensas
+
+Déjame contarte una historia que me quita el sueño. Un amigo mío—un tipo inteligente, emprendedor exitoso—pasó seis meses construyendo su aplicación. Tenía usuarios, ingresos, todo iba genial. Entonces una mañana, se despertó para descubrir que toda su base de datos había sido borrada. Años de datos de clientes, desaparecidos. Su negocio estaba efectivamente muerto de la noche a la mañana.
+
+¿Qué pasó? Había cometido accidentalmente su contraseña de base de datos a GitHub. Estaba ahí en texto plano para que cualquiera la viera. Alguien la encontró, inició sesión y borró todo.
+
+Este es el tipo de error que parece imposible hasta que te sucede a ti. Y es mucho más común de lo que podrías pensar. He visto esta historia repetirse docenas de veces en foros de desarrolladores, siempre con el mismo desenlace desgarrador: alguien no entendió la importancia de ocultar sus secretos, y pagó el precio.
+
+### El Problema: Código Que Viaja
+
+Aquí hay algo que no era obvio para mí cuando comencé: **tu código va a terminar en lugares que no controlas.**
+
+Piensa en el ciclo de vida de tu aplicación:
+1. Escribes código en tu laptop
+2. Lo guardas en GitHub (u otro repositorio de código)
+3. Quizás compartes acceso con un desarrollador que contrataste
+4. Lo despliegas a un servidor web
+5. Podrías tener miembros del equipo descargándolo a sus máquinas
+6. Eventualmente, podrías hacer partes de él de código abierto
+
+En cada uno de estos pasos, cualquiera con acceso puede leer cada línea de código. Cada. Single. Línea.
+
+Ahora imagina que has escrito algo como esto en tu código:
+
+```php
+$databasePassword = "SuperSecretPassword123!";
+$apiKey = "sk_live_1234567890abcdef";
+```
+
+Esas credenciales están ahora en todas partes donde está tu código. Cualquiera que pueda ver tu código puede iniciar sesión en tu base de datos. Cualquiera que pueda ver tu código puede hacer llamadas a la API usando tu cuenta (y acumular tu factura). Cualquiera que pueda ver tu código puede convertirse en ti.
+
+Esto no es teórico. He visto personalmente repositorios de GitHub con millones de visitas que incluían accidentalmente claves API de Stripe, credenciales de AWS y contraseñas de bases de datos. Los bots escanean GitHub específicamente buscando estos patrones. En el momento en que confirmas un secreto en un repositorio público, está comprometido. Incluso en repositorios privados, estás a un empleado descontento o cuenta hackeada de distancia del desastre.
+
+### La Solución: Variables De Entorno
+
+Entonces, ¿cómo resolvemos esto? Necesitamos una forma de configurar nuestra aplicación sin poner secretos en el código mismo.
+
+Entra el archivo `.env`.
+
+Un archivo de entorno es un archivo especial que se encuentra en la carpeta de tu proyecto pero **nunca se confirma en tu repositorio de código**. Contiene valores de configuración específicos del entorno en el que se ejecuta tu código—tu laptop, tu servidor de pruebas, tu servidor de producción.
+
+Piénsalo así: Tu código es un libro de recetas. El archivo `.env` es la despensa de tu cocina. La receta (código) dice "agrega dos huevos," pero no especifica qué huevos—usas los huevos que estén en tu despensa (entorno) en ese momento. Diferentes cocinas (entornos) tienen diferentes ingredientes, pero la receta se mantiene igual.
+
+Así es como se ve típicamente un archivo `.env`:
+
+```bash
+# Configuración de Base de Datos
+database.default.hostname = localhost
+database.default.database = my_app_db
+database.default.username = app_user
+database.default.password = SuperSecretPassword123!
+database.default.DBDriver = MySQLi
+
+# Claves API
+STRIPE_SECRET_KEY = sk_live_1234567890abcdef
+STRIPE_PUBLISHABLE_KEY = pk_live_0987654321fedcba
+
+# Configuración de Aplicación
+app.baseURL = 'http://localhost:8080'
+CI_ENVIRONMENT = development
+```
+
+Entonces en tu código, en lugar de escribir la contraseña real, haces referencia a la variable de entorno:
+
+```php
+// En lugar de esto (MAL):
+$password = "SuperSecretPassword123!";
+
+// Haces esto (BIEN):
+$password = getenv('database.default.password');
+```
+
+Ahora tu código no contiene secretos. Solo sabe cómo buscarlos cuando se ejecuta.
+
+### Por Qué Esto Importa: Una Analogía Del Mundo Real
+
+Imagina que estás construyendo una casa. No escribirías tu dirección y la combinación de tu caja fuerte directamente en los planos, y luego entregarías copias de esos planos a cada contratista, inspector y repartidor que trabaje en tu casa. Eso es una locura, ¿verdad? Cualquiera con los planos podría encontrar tu casa y abrir tu caja fuerte.
+
+Pero eso es exactamente lo que estás haciendo cuando codificas secretos directamente en tu aplicación.
+
+En cambio, los planos (tu código) describen cómo construir la casa, y cada persona recibe solo la información que necesita para su trabajo específico. El electricista recibe especificaciones eléctricas, no la combinación de la caja fuerte. El plomero recibe diagramas de tuberías, no tu contraseña de WiFi.
+
+El archivo `.env` es como un documento seguro que permanece en la casa después de la construcción. Contiene toda la información sensible que la casa necesita para funcionar—códigos de alarma, contraseñas de WiFi, combinaciones de cajas fuertes—pero nunca se incluye en los planos que se pasan de un lado a otro.
+
+### El Patrón `.env` vs `.env.example`
+
+Aquí está el flujo de trabajo práctico que usan los desarrolladores profesionales:
+
+**1. Crear un archivo `.env.example`**
+Este archivo contiene todas las claves de configuración que tu aplicación necesita, pero con valores de marcador de posición en lugar de secretos reales:
+
+```bash
+# Copia este archivo a .env y completa tus valores reales
+database.default.hostname = localhost
+database.default.database = your_database_name
+database.default.username = your_username
+database.default.password = YOUR_PASSWORD_HERE
+```
+
+**2. Agregar `.env` a tu archivo `.gitignore`**
+Esto le dice a Git que nunca rastree ni confirme tu archivo `.env`. Permanece solo en tu máquina local.
+
+**3. Copiar `.env.example` a `.env` en cada entorno**
+Cuando configuras una nueva laptop de desarrollador, o despliegas a un servidor, copias el archivo de ejemplo y completas los valores reales.
+
+**4. Nunca confirmar el archivo `.env` real**
+Nunca. Ni siquiera "solo esta vez." Ni siquiera "solo para probar." Nunca.
+
+### ¿Qué Va En Tu Archivo `.env`?
+
+Con el tiempo, acumularás varios secretos y valores de configuración. Aquí está lo que típicamente pertenece en tu archivo de entorno:
+
+**Credenciales de Base de Datos**
+- Nombre del host
+- Nombre de la base de datos
+- Nombre de usuario
+- Contraseña
+- Número de puerto
+
+**Claves API**
+- Procesadores de pago (Stripe, PayPal)
+- Servicios de email (SendGrid, Mailgun)
+- Mapas y geolocalización (Google Maps, Mapbox)
+- Servicios SMS (Twilio)
+- Almacenamiento en la nube (AWS S3, DigitalOcean Spaces)
+- Cualquier servicio de terceros con el que te integres
+
+**Secretos de Aplicación**
+- Claves de encriptación
+- Secretos de sesión
+- Claves de firma JWT
+- Tokens CSRF
+
+**Configuraciones Específicas Del Entorno**
+- URL base (localhost vs dominio de producción)
+- Modo de depuración (habilitado en desarrollo, deshabilitado en producción)
+- Niveles de log
+- Configuración de email (usar emails reales en producción, falsos en desarrollo)
+
+### Los Escenarios De Pesadilla Que Evitamos
+
+Quiero enfatizar lo serio que es esto compartiendo algunas historias más del mundo real:
+
+**La Factura De $50,000 De AWS**
+Una startup accidentalmente comprometió sus claves de acceso de AWS en un repositorio público de GitHub. En 24 horas, mineros de criptomonedas habían encontrado las claves, lanzado cientos de máquinas virtuales costosas, y minado Bitcoin a expensas de la startup. La factura fue de $50,000 antes de que la detección de fraude de AWS lo detectara.
+
+**El Rescate De La Base De Datos**
+Un desarrollador incluyó credenciales de base de datos en código que luego se hizo de código abierto. Seis meses después, alguien accedió a la base de datos de producción y la mantuvo como rehén por 5 Bitcoin. La empresa tuvo que pagar porque no tenían respaldos adecuados.
+
+**La Violación Del GDPR**
+Una empresa con sede en la UE accidentalmente expuso datos de clientes porque sus claves API eran visibles en su código. Se enfrentaron a multas masivas bajo regulaciones GDPR y tuvieron que notificar a miles de clientes sobre la violación.
+
+Estas no son historias de terror para asustarte innecesariamente. Son cuentos cautelares que suceden regularmente porque los desarrolladores subestiman la importancia de mantener los secretos fuera del código.
+
+### Nuestra Estrategia `.env` Para LaunchPad API
+
+En nuestro proyecto, nos tomamos esto en serio desde el día uno. Aquí está nuestro enfoque:
+
+**Paso 1: Crear El Archivo De Ejemplo**
+Creamos un archivo `.env.example` que documenta cada opción de configuración que nuestra aplicación necesita. Esto sirve tanto como documentación como plantilla.
+
+**Paso 2: Proteger El Archivo Real**
+Agregamos `.env` a nuestro `.gitignore` inmediatamente, antes de escribir cualquier código real. Esto asegura que nunca lo confirmemos accidentalmente.
+
+**Paso 3: Documentar El Proceso De Configuración**
+En nuestro README y documentación, le decimos explícitamente a cualquiera que configure el proyecto: "Copia `.env.example` a `.env` y completa tus valores."
+
+**Paso 4: Usar Diferentes Valores Para Diferentes Entornos**
+- Desarrollo: Usa base de datos local, modo de depuración habilitado, claves API de prueba
+- Pruebas: Usa base de datos de pruebas, modo de depuración habilitado, claves API reales
+- Producción: Usa base de datos de producción, modo de depuración deshabilitado, claves API reales, configuraciones de seguridad adicionales
+
+**Paso 5: Nunca Registrar Ni Mostrar Variables De Entorno**
+En nuestro código, somos cuidadosos de nunca registrar o mostrar accidentalmente estos valores. Si necesitamos depurar problemas de conexión a la base de datos, registramos que la conexión falló, no qué contraseña intentamos usar.
+
+### Errores Comunes Y Cómo Evitarlos
+
+Incluso los desarrolladores experimentados cometen errores a veces. Aquí están los errores más comunes y cómo prevenirlos:
+
+**Error 1: "Lo Agregaré A Gitignore Después"**
+Problema: Creas el archivo `.env`, escribes algo de código, confirmas todo, y luego recuerdas agregarlo a `.gitignore`. Demasiado tarde—ya está en tu historial.
+
+Solución: Agrega `.env` a `.gitignore` inmediatamente cuando creas el proyecto, antes de crear el archivo `.env` real.
+
+**Error 2: "Lo Removí Del Repo, Así Que Estoy Seguro"**
+Problema: Confirmaste secretos, te diste cuenta de tu error, y borraste el archivo. Pero Git mantiene el historial. Cualquiera todavía puede ver las confirmaciones antiguas con tus secretos.
+
+Solución: Una vez confirmado, debes rotar (cambiar) todas las credenciales expuestas. Borrar el archivo no es suficiente.
+
+**Error 3: "Solo Estoy Probando, Usaré Valores De Marcador De Posición"**
+Problema: Usas credenciales reales en desarrollo "solo para probar," con la intención de limpiarlos más tarde. Lo olvidas.
+
+Solución: Nunca uses credenciales de producción en desarrollo. Crea cuentas de prueba separadas con acceso limitado.
+
+**Error 4: "Mi Repo Es Privado, Así Que Estoy Seguro"**
+Problema: Los repositorios privados pueden ser accedidos por cualquiera a quien le des permisos. Los miembros del equipo se van. Las cuentas son hackeadas. "Privado" no significa "seguro."
+
+Solución: Trata los repositorios privados igual que los públicos. Mantén los secretos fuera.
+
+**Error 5: "Encriptaré Los Secretos En El Código"**
+Problema: Todavía estás almacenando secretos en código, solo encriptados. Cualquiera con el código puede desencriptarlos.
+
+Solución: No almacenes secretos en código en absoluto, encriptados o no. Usa variables de entorno.
+
+### La Decisión Que Tomamos
+
+Cuando comenzamos LaunchPad API, hicimos una regla innegociable: **Sin secretos en código. Nunca.**
+
+Esto no era solo seguir las mejores prácticas. Era construir una base en la que pudiéramos confiar. Cuando eres un emprendedor, tienes suficiente de qué preocuparte—marketing, ventas, soporte al cliente, financiamiento. Lo último que necesitas es una violación de seguridad que destruya todo lo que has construido.
+
+Al usar variables de entorno desde el día uno, nosotros:
+- Podemos compartir nuestro código libremente sin preocuparnos por exponer credenciales
+- Podemos desplegar a diferentes entornos sin cambiar código
+- Podemos rotar credenciales fácilmente cuando sea necesario
+- Podemos incorporar nuevos desarrolladores sin darles acceso a sistemas de producción
+- Podemos dormir por la noche sabiendo que nuestros secretos son realmente secretos
+
+**Compromisos a considerar:**
+- **Pros**: Seguridad, flexibilidad, despliegue más fácil, mejor colaboración en equipo
+- **Contras**: Configuración ligeramente más compleja, necesidad de administrar archivos de entorno en cada servidor
+
+Esta es una decisión que es completamente reversible (siempre puedes cambiar tu enfoque más tarde), pero ¿por qué arriesgarte? Comienza seguro, mantente seguro.
+
+### Comenzando Con Tu Archivo `.env`
+
+Si estás siguiendo esta guía, aquí está exactamente qué hacer:
+
+1. **Crea `.env.example`** en la raíz de tu proyecto
+2. **Agrega todas las claves de configuración** que tu app necesita, con valores de marcador de posición
+3. **Agrega `.env` a `.gitignore`** antes de crear el archivo real
+4. **Copia `.env.example` a `.env`** y completa tus valores reales
+5. **Nunca confirmes el archivo `.env`**—revisa dos veces antes de cada confirmación
+6. **Respalda tu archivo `.env` de forma segura**—quizás en un administrador de contraseñas
+
+Recuerda: Tu archivo `.env` es la llave de tu reino. Guárdalo en consecuencia.
+
 ## Por Qué Las APIs en PHP Tienen Sentido para Emprendedores (La Verdad Real)
 
 Hablemos del elefante en la habitación: Probablemente has escuchado que los desarrolladores "reales" usan Node.js, Python o Ruby. Quizás te estás preguntando si estás cometiendo un error al elegir PHP.
@@ -491,6 +889,8 @@ Si llegas al punto donde PHP es tu cuello de botella, felicidades—tienes un ne
 La optimización prematura es el enemigo del progreso. Comienza con lo que funciona, lanza rápido y optimiza cuando tengas usuarios reales y datos reales mostrando dónde están los problemas.
 
 ## Nuestra Metodología de "Vibe Coding" en 3 Pasos
+
+![Proceso de Vibe Coding](docs-graphics/vibe_horizontal_es.png)
 
 Ahora entremos en el proceso real. Así es como pasamos de "necesitamos una API" a tener una base lista para producción en días.
 
@@ -698,6 +1098,1224 @@ Ese `['filter' => 'tokens']` le dice a CodeIgniter: "Oye, antes de dejar que alg
 Shield maneja todo lo demás—verificando el token, asegurándose de que no esté expirado, cargando el usuario, haciéndolos disponibles en nuestro controlador.
 
 **Este es el poder de Vibe Coding con buenas bibliotecas.** Escribimos quizás 20 líneas de código personalizado y obtuvimos un endpoint de API completamente funcional y seguro.
+
+## El Puente Entre Tu API y el Mundo: Entendiendo CORS
+
+Así que has construido tu API. Tienes la autenticación funcionando. Tus endpoints responden perfectamente cuando los pruebas desde tu propia computadora. Todo parece perfecto.
+
+Entonces intentas conectar tu aplicación móvil—o la aplicación web de tu amigo—and de repente nada funciona. El navegador muestra mensajes de error en rojo. Tu app arroja misteriosas excepciones de "Error de Red". Empiezas a cuestionar todo lo que acabas de construir.
+
+Bienvenido a una de las experiencias más frustrantes en el desarrollo de APIs. Nosotros hemos pasado por eso. Déjanos ahorrarte los tres días de confusión por los que pasamos.
+
+### El Escenario Que Rompe El Corazón De Todos
+
+Imagina esto: Acabas de terminar tu API. Estás orgulloso de ella. Abres tu navegador web, navegas a `http://localhost:8080/api/users`, y ves hermosos datos JSON fluyendo de vuelta. "¡Perfecto!" piensas.
+
+Abres el código de tu aplicación móvil—o tal vez tienes un archivo HTML simple con algo de JavaScript—and escribes lo que parece ser el código más sencillo del mundo:
+
+```javascript
+fetch('http://localhost:8080/api/users')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+Debería funcionar, ¿verdad? Estás pidiendo exactamente la misma URL, esperando exactamente los mismos datos. Pero en lugar de tu hermoso JSON, obtienes un error que se ve algo así:
+
+> "El acceso a fetch en 'http://localhost:8080/api/users' desde el origen 'http://localhost:3000' ha sido bloqueado por la política de CORS."
+
+O tal vez tu aplicación móvil simplemente falla silenciosamente, o muestra "Error de Red" sin ningún detalle útil.
+
+¿Qué acaba de pasar? Tu API está funcionando perfectamente. Tu código se ve correcto. Sin embargo, los dos se niegan a hablarse. Es desesperante.
+
+### La Regla de Seguridad Que Nadie Te Contó
+
+Aquí está lo que realmente está pasando—and no es un bug, es una característica de seguridad que se agregó a los navegadores web hace años para protegerte a ti y a tus usuarios.
+
+Imagina que has iniciado sesión en el sitio web de tu banco en una pestaña del navegador. Luego visitas otro sitio web—digamos que es un sitio de noticias aparentemente inocente. Sin ciertas protecciones, ese sitio de noticias podría incluir código JavaScript que haga solicitudes al sitio web de tu banco usando tu sesión de inicio de sesión existente. Podría potencialmente transferir dinero, cambiar tu dirección, o hacer todo tipo de cosas maliciosas usando tu sesión autenticada.
+
+Eso sería catastrófico.
+
+Así que los navegadores web implementaron una regla llamada la **Política del Mismo Origen**. Esta regla dice: "El código ejecutándose en un sitio web solo puede hacer solicitudes a ese mismo sitio web." Si estás en `miapp.com`, puedes hablar con `miapp.com/api/users` todo el día. Pero si intentas hablar con `banco.com` desde `miapp.com`, el navegador interviene y dice "No, no permitido."
+
+Esta regla ha salvado a innumerables personas de ataques de scripting entre sitios y secuestro de sesiones. Es genuinamente importante.
+
+Pero aquí está el problema: tu API y tu frontend son técnicamente diferentes "orígenes" (diferentes puertos, o diferentes dominios), así que el navegador los trata como sitios web diferentes y bloquea la comunicación.
+
+### Entra CORS: El Permiso Para Solicitudes de Origen Cruzado
+
+CORS significa **Cross-Origin Resource Sharing** (Compartición de Recursos de Origen Cruzado). Piénsalo como un sistema de permisos formal. Tu API puede decirle a los navegadores: "Está bien si estos sitios web específicos me hablan. Confío en ellos."
+
+Sin configuración CORS, tu API es como una casa con todas las puertas cerradas. La seguridad es excelente, pero nadie puede visitar. Con CORS, puedes desbloquear puertas específicas para visitantes específicos mientras mantienes el resto de la casa segura.
+
+La forma en que funciona es realmente bastante elegante. Cuando tu código JavaScript intenta hacer una solicitud a un origen diferente, el navegador primero envía lo que se llama una "solicitud preflight". Esto es básicamente el navegador preguntando a tu API: "Oye, este sitio web en el origen X quiere hablarte. ¿Está permitido?"
+
+Tu API responde con encabezados CORS que dicen cosas como:
+- "Sí, el origen X está permitido"
+- "Pueden usar estos métodos HTTP: GET, POST, PUT, DELETE"
+- "Pueden enviar estos encabezados: Content-Type, Authorization"
+- "Pueden incluir credenciales como cookies si es necesario"
+
+Solo después de recibir este permiso, el navegador envía realmente la solicitud real con tus datos.
+
+### Por Qué Las Apps Móviles También Enfrentan Esto
+
+Quizás estés pensando: "Pero estoy construyendo una app móvil, no un sitio web. ¿Por qué me importan las reglas de seguridad de los navegadores?"
+
+Excelente pregunta. Las aplicaciones móviles modernas a menudo se construyen usando tecnologías web—React Native, Flutter, Ionic, o incluso solo vistas web embebidas. Estos frameworks usan los mismos motores de navegador subyacentes para hacer solicitudes HTTP. Así que aunque tu app se ejecuta en un teléfono, no en una ventana de navegador, se aplican las mismas reglas CORS porque la capa de red está basada en navegador.
+
+Además, durante el desarrollo, probablemente estás probando tu app móvil en un navegador de todos modos (usando herramientas como simuladores basados en navegador). Y cuando eventualmente construyas un panel web para tus usuarios, definitivamente necesitarás CORS configurado.
+
+La conclusión: CORS es innegociable para el desarrollo moderno de APIs. Necesitas configurarlo correctamente, y necesitas entender lo que estás haciendo para no abrir accidentalmente agujeros de seguridad.
+
+### Cómo Configuramos CORS en CodeIgniter 4
+
+CodeIgniter 4 en realidad hace esto relativamente sencillo una vez que sabes qué hacer. El framework incluye un módulo CORS que viene incorporado pero necesita ser habilitado y configurado.
+
+Aquí está el proceso de decisión por el que pasamos:
+
+**Primera decisión: ¿Qué orígenes debemos permitir?**
+
+En producción, quieres ser muy específico. Si tu frontend se ejecuta en `https://miapp.com`, solo deberías permitir ese origen. No `http://miapp.com` (sin HTTPS), no `https://www.miapp.com` (con www), no comodines que permitirían que cualquier sitio web hable con tu API.
+
+Para desarrollo, necesitábamos permitir múltiples orígenes porque:
+- Nuestra app móvil ejecutándose en un simulador podría venir de `http://localhost:8100`
+- Nuestro frontend web podría ejecutarse en `http://localhost:3000`
+- Nuestras herramientas de prueba de API (como Postman o Insomnia) podrían no enviar un origen en absoluto
+
+**Segunda decisión: ¿Qué métodos HTTP debemos soportar?**
+
+Para una API REST, típicamente necesitas:
+- `GET` para leer datos
+- `POST` para crear datos
+- `PUT` o `PATCH` para actualizar datos
+- `DELETE` para eliminar datos
+- `OPTIONS` para las solicitudes preflight (los navegadores envían esto automáticamente)
+
+**Tercera decisión: ¿Qué encabezados debemos permitir?**
+
+Como mínimo, necesitas:
+- `Content-Type` (para poder enviar JSON)
+- `Authorization` (para poder enviar tokens bearer)
+- `X-Requested-With` (usado por muchas bibliotecas AJAX)
+
+**Cuarta decisión: ¿Deberíamos permitir credenciales?**
+
+Si estás usando cookies o autenticación basada en sesiones, necesitas permitir credenciales. Para APIs basadas en tokens (que es lo que usa Shield), técnicamente no necesitas cookies, pero permitir credenciales no hace daño y hace tu API más flexible para casos de uso futuros.
+
+### La Configuración Que Realmente Funciona
+
+Después de experimentar (y fallar múltiples veces), aquí está la configuración que funcionó para nosotros. Creamos un archivo de configuración CORS en `app/Config/Cors.php`:
+
+```php
+<?php
+
+namespace Config;
+
+use CodeIgniter\Config\BaseConfig;
+
+class Cors extends BaseConfig
+{
+    // Durante el desarrollo, permitimos múltiples puertos localhost
+    // En producción, esto debería ser tu dominio exacto
+    public array $allowedOrigins = [
+        'http://localhost:3000',     // Servidor de desarrollo React/Vue
+        'http://localhost:8100',     // Apps Ionic/Cordova
+        'http://localhost:8080',     // Otras pruebas locales
+        'http://localhost',          // Desarrollo local general
+    ];
+    
+    // Permitir todos los orígenes con un comodín (¡NO para producción!)
+    // Solo usa esto para prototipado rápido, nunca en producción
+    public bool $allowAnyOrigin = false;
+    
+    // Métodos HTTP que nuestra API soporta
+    public array $allowedMethods = [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        'OPTIONS',
+        'PATCH'
+    ];
+    
+    // Encabezados que el cliente puede enviar
+    public array $allowedHeaders = [
+        'Content-Type',
+        'Authorization',
+        'X-Requested-With',
+        'Accept',
+        'Origin'
+    ];
+    
+    // Encabezados que el cliente puede leer de la respuesta
+    public array $exposedHeaders = [];
+    
+    // Si permitir cookies/credenciales
+    public bool $allowCredentials = true;
+    
+    // Cuánto tiempo los navegadores pueden cachear la respuesta preflight (en segundos)
+    // 7200 = 2 horas, reduce las solicitudes preflight
+    public int $maxAge = 7200;
+}
+```
+
+Luego habilitamos el filtro CORS en `app/Config/Filters.php`:
+
+```php
+public array $aliases = [
+    'csrf'     => CSRF::class,
+    'toolbar'  => DebugToolbar::class,
+    'honeypot' => Honeypot::class,
+    'cors'     => \CodeIgniter\Filters\Cors::class, // Agregar esta línea
+];
+
+public array $globals = [
+    'before' => [
+        'cors', // Aplicar CORS a todas las rutas
+        // ... otros filtros
+    ],
+    'after' => [
+        // ...
+    ],
+];
+```
+
+### El Momento De La Verdad: Probando Tu Configuración CORS
+
+Después de configurar CORS, necesitas probarlo correctamente. Aquí está lo que aprendimos:
+
+**Probando desde un navegador:**
+Abre la consola de desarrollador de tu navegador e intenta hacer una solicitud fetch a tu API desde un origen diferente. Deberías ver que la solicitud tiene éxito sin errores CORS.
+
+**Probando desde curl:**
+```bash
+# Probar solicitud preflight
+curl -X OPTIONS -H "Origin: http://localhost:3000" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: Content-Type" \
+  -I http://localhost:8080/api/users
+
+# Deberías ver encabezados como:
+# Access-Control-Allow-Origin: http://localhost:3000
+# Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH
+```
+
+**Errores comunes que cometimos:**
+1. Olvidar reiniciar el servidor después de cambiar la configuración
+2. Usar `*` (comodín) para orígenes en producción (¡riesgo de seguridad!)
+3. No incluir el método `OPTIONS` en los métodos permitidos
+4. Olvidar permitir el encabezado `Authorization` (rompe la autenticación por token)
+5. Probar desde URLs `file://` (los navegadores tratan estos diferente)
+
+### La Lista De Verificación Para Producción
+
+Cuando estés listo para desplegar a producción, actualiza tu configuración CORS:
+
+```php
+public array $allowedOrigins = [
+    'https://miapp.com',      // Tu dominio de producción
+    'https://www.miapp.com',  // Incluir variante www
+    'https://admin.miapp.com', // Si tienes un panel de administración separado
+];
+
+public bool $allowAnyOrigin = false; // ¡Nunca true en producción!
+```
+
+**¿Por qué ser tan restrictivo?**
+
+Imagina que permites cualquier origen (`*`) en producción. Ahora cualquier sitio web en internet puede hacer solicitudes a tu API desde los navegadores de sus usuarios. Podrían:
+- Recolectar datos de tus endpoints públicos
+- Intentar fuerza bruta en la autenticación usando tu endpoint de login
+- Inundar tu API con solicitudes de miles de usuarios
+
+Al restringir a orígenes específicos, te aseguras de que solo tus aplicaciones legítimas puedan comunicarse con tu API.
+
+### Por Qué Esto Importa Más De Lo Que Crees
+
+Los errores CORS a menudo son el primer "muro" real que enfrentan los desarrolladores de APIs principiantes. Has construido algo que funciona perfectamente en aislamiento, pero en el momento en que intentas integrarlo con un frontend real, todo se rompe. Es desmoralizante.
+
+Pero aquí está lo que hemos aprendido: CORS no es solo un obstáculo técnico que superar. Es una parte fundamental de la arquitectura de seguridad web. Entender CORS significa entender cómo funciona la seguridad web. Significa pensar sobre qué aplicaciones deberían tener acceso a tus datos y cuáles no.
+
+Cuando configuras CORS correctamente, no solo estás arreglando un error—estás tomando una decisión de seguridad consciente sobre quién puede hablar con tu API y cómo. Esa es la diferencia entre alguien que "hizo que funcionara" y alguien que entiende lo que está construyendo.
+
+Para LaunchPad API, la configuración CORS fue el puente que conectó nuestro backend con el mundo exterior. Transformó nuestra API de una isla solitaria en un servicio que podía impulsar apps web, apps móviles, e integraciones de terceros. Y una vez que lo entendimos, ya no era aterrador—era solo otra capa de seguridad que controlábamos.
+
+## Día 5: Llevando Tu API a Internet—Pasos Reales de Despliegue Que Realmente Funcionan
+
+Así que has construido tu API. La has probado localmente. Todo funciona perfectamente en tu computadora. Ahora llega el momento de la verdad: ponerla en internet donde la gente real pueda usarla.
+
+Aquí es donde muchas guías te dejan colgando. Dicen "despliega a producción" como si fuera un botón que presionas, y luego pasan al siguiente tema. Pero aquí está la realidad: el despliegue es una serie de decisiones y pasos que pueden hacer o deshacer el lanzamiento de tu proyecto. Hazlo mal, y pasarás tu primera semana peleando con problemas de configuración en lugar de celebrar tu lanzamiento.
+
+Aprendimos esto de la manera difícil. Nuestro primer intento de despliegue fue... llamémoslo "educativo." Rompimos cosas. Tuvimos que revertir. Nos quedamos hasta las 3 de la mañana preguntándonos por qué algo que funcionaba perfectamente en nuestra laptop se negaba a funcionar en el servidor. Pero lo superamos, y ahora te vamos a ahorrar ese dolor.
+
+### El Cambio de Mentalidad: De "Funciona en Mi Máquina" a "Funciona en Todas Partes"
+
+Antes de sumergirnos en los pasos específicos, hablemos del desafío fundamental del despliegue: tu entorno de producción es diferente de tu entorno de desarrollo. Diferente software de servidor, diferentes rutas de archivos, diferentes reglas de seguridad, diferente todo.
+
+Piénsalo así: has estado practicando una canción con tu guitarra acústica en tu habitación. Ahora la estás interpretando en un escenario con una banda completa, sistema de sonido profesional y una audiencia en vivo. La canción es la misma, pero todo lo que la rodea ha cambiado.
+
+Tu trabajo durante el despliegue no es solo mover archivos de un lugar a otro. Es adaptar tu aplicación a su nuevo hogar manteniendo intacta la funcionalidad central. Esto significa entender qué necesita cambiar (configuración) y qué debe permanecer exactamente igual (tu lógica de código).
+
+### Por Qué Elegimos Hosting Compartido (Y Por Qué Tú Probablemente También Deberías)
+
+¿Recuerdas cuando hablamos de las ventajas de PHP? Aquí es donde realmente paga dividendos. Mientras los desarrolladores que usan Node.js o Python están luchando con la configuración de VPS, administración de servidores y pipelines de despliegue, tú vas a subir algunos archivos y listo.
+
+**Pero seamos claros sobre lo que realmente significa el hosting compartido:**
+
+El hosting compartido es como alquilar un departamento en un edificio grande. Obtienes tu propio espacio (espacio en disco, base de datos, cuentas de correo), pero estás compartiendo la infraestructura del edificio (el hardware del servidor, conexión a internet, sistemas de seguridad) con otros inquilinos. La administración del edificio (tu compañía de hosting) se encarga del mantenimiento, actualizaciones de seguridad y mantener todo funcionando.
+
+**Aquí está por qué esto es perfecto para LaunchPad API:**
+
+1. **Costo**: $3-10 por mes versus $20-50+ por un VPS
+2. **Simplicidad**: No se requiere administración de servidores
+3. **Soporte**: La mayoría de los hosts compartidos tienen soporte 24/7 para problemas básicos
+4. **Características**: Usualmente obtienes correo, bases de datos, certificados SSL y más incluidos
+5. **Escalabilidad**: Cuando superes el hosting compartido, tendrás ingresos para pagar mejores opciones
+
+**Las compensaciones:**
+- No tienes acceso root (no puedes instalar software arbitrario)
+- El rendimiento puede variar según lo que otros sitios en el servidor estén haciendo
+- Estás limitado a lo que el host proporciona (versiones de PHP, extensiones, etc.)
+
+Para una API nueva con cero usuarios, estas compensaciones son completamente aceptables. No vas a alcanzar los límites de rendimiento con tus primeros cien usuarios. Y para cuando lo hagas, tendrás los ingresos y conocimientos para actualizar.
+
+### Paso 1: Elegir Tu Proveedor de Hosting (La Decisión Que Importa Más De Lo Que Piensas)
+
+Hay cientos de compañías de hosting compartido. Aquí te decimos cómo elegir sin volverte loco:
+
+**Lo que realmente necesitas:**
+1. PHP 8.1 o superior (8.2+ preferido)
+2. MySQL o MariaDB (ambos funcionan bien)
+3. cPanel o panel de control similar (hace la administración más fácil)
+4. Certificado SSL gratuito (esencial para HTTPS)
+5. Acceso FTP o SFTP (para subir archivos)
+6. phpMyAdmin (para administrar tu base de datos visualmente)
+7. Soporte razonable (chat 24/7 es ideal)
+
+**Opciones populares que funcionan bien:**
+- **Namecheap**: Barato, confiable, bueno para principiantes
+- **Hostinger**: Buen rendimiento, asequible, interfaz moderna
+- **Bluehost**: Popular, amigable con WordPress (lo que significa amigable con PHP)
+- **SiteGround**: Excelente soporte, un poco más caro pero vale la pena por la tranquilidad
+- **A2 Hosting**: Amigable con desarrolladores, buen rendimiento
+
+**Lo que elegimos y por qué:**
+Elegimos Namecheap para nuestro primer despliegue. No porque sea el mejor en cada categoría, sino porque cumplió todas nuestras casillas a un precio ($3.88/mes) que hizo fácil decir que sí. Su interfaz de cPanel es estándar, su soporte es decente, y no te cobran por cada característica básica.
+
+**El proceso de decisión:**
+- Miramos más de 10 hosts
+- Eliminamos cualquiera sin soporte para PHP 8.1+
+- Eliminamos cualquiera que cobrara extra por certificados SSL
+- Elegimos la opción más barata que cumplió nuestros requisitos técnicos
+- Planeamos actualizar más tarde si era necesario
+
+**¿Reversible?** Absolutamente. Si tu host decepciona, puedes mover todo tu sitio en unas pocas horas una vez que conoces el proceso. No pienses demasiado en esta decisión.
+
+### Paso 2: Preparando Tu Aplicación para el Mundo Real
+
+Antes de subir nada, necesitas hacer algunos cambios a tu código. Estos no son opcionales—son la diferencia entre una API que funciona y una rota.
+
+**El Baile de la Configuración del Entorno:**
+
+¿Recuerdas tu archivo `.env`? ¿El que tiene todos tus secretos? Ese archivo vive solo en tu máquina local. Nunca lo subas. Pero tu servidor de producción necesita esos mismos valores de configuración—solo con valores diferentes (base de datos de producción, claves API de producción, etc.).
+
+Aquí está el proceso:
+
+1. **Crea un archivo `.env` de producción localmente** (tampoco lo confirmes):
+   ```bash
+   # .env.production (esto es solo una plantilla, renómbralo a .env en el servidor)
+   CI_ENVIRONMENT = production
+   app.baseURL = 'https://tudominio.com'
+   
+   # Base de datos de producción (obtendrás estos de tu panel de control de hosting)
+   database.default.hostname = localhost
+   database.default.database = tuhosting_usuario_dbname
+   database.default.username = tuhosting_usuario
+   database.default.password = tu_contraseña_producción
+   database.default.DBDriver = MySQLi
+   ```
+
+2. **Actualiza tus configuraciones de producción:**
+   ```bash
+   # En .env.production
+   CI_ENVIRONMENT = production
+   app.baseURL = 'https://tudominio.com'
+   
+   # Apaga el debugging en producción
+   CI_DEBUG = false
+   
+   # Configura el logging de errores
+   logger.threshold = 4
+   ```
+
+3. **Establece los permisos de archivos apropiados localmente** (para que se transfieran correctamente):
+   Tu carpeta `writable/` necesita ser escribible por el servidor web. Esto se maneja diferente en diferentes hosts, pero generalmente:
+   - Carpetas: 755 (rwxr-xr-x)
+   - Archivos: 644 (rw-r--r--)
+   - Carpeta `writable/`: 775 (rwxrwxr-x)
+
+**Por qué esto importa:**
+- El modo producción deshabilita la salida de depuración (seguridad)
+- Las credenciales de base de datos de producción son diferentes (seguridad)
+- Los permisos apropiados previenen errores de "permiso denegado"
+- Tu URL base afecta cómo funcionan los enlaces y redirecciones
+
+**Error común que evitar:**
+No copies simplemente tu archivo `.env` local a producción. Tu base de datos local se llama algo como `ci_api_db`. Tu base de datos de producción se llamará algo como `namecheap_usuario_cidb` con un usuario y contraseña diferentes. Usar credenciales locales en producción fallará.
+
+### Paso 3: Configurando Tu Base de Datos de Producción
+
+Esta es la parte que intimida a la gente, pero en realidad es sencilla una vez que la ves hacerse.
+
+**Creando la Base de Datos:**
+
+1. **Inicia sesión en tu panel de control de hosting** (cPanel, Plesk, o lo que use tu host)
+2. **Encuentra "MySQL Databases" o "Asistente de Bases de Datos"**
+3. **Crea una nueva base de datos**:
+   - Ponle un nombre descriptivo (tuapp_db)
+   - El host usualmente le agrega un prefijo con tu usuario (usuario_tuapp_db)
+4. **Crea un usuario de base de datos**:
+   - Elige una contraseña fuerte (usa un generador)
+   - Guarda esta contraseña en algún lugar seguro
+5. **Agrega el usuario a la base de datos** con "Todos los Privilegios"
+
+**Moviendo Tus Datos Locales a Producción:**
+
+Tienes dos opciones aquí, y recomendamos la segunda para principiantes:
+
+**Opción 1: Exportar e Importar (Más Control):**
+1. Exporta tu base de datos local (usando phpMyAdmin, TablePlus o línea de comandos):
+   ```bash
+   # Si tienes MySQL localmente
+   mysqldump -u root -p ci_api_db > backup.sql
+   ```
+2. Abre el phpMyAdmin de tu hosting
+3. Selecciona tu base de datos de producción
+4. Haz clic en "Importar" y sube tu archivo backup.sql
+
+**Opción 2: Ejecutar Migraciones Fresco (Más Limpio):**
+1. No exportes datos del desarrollo local
+2. Sube tu código (siguiente paso)
+3. Conéctate a tu servidor vía SSH o usa la terminal del hosting
+4. Ejecuta las migraciones frescas en producción:
+   ```bash
+   cd /ruta/a/tu/app
+   php spark migrate --all
+   ```
+
+**Por qué preferimos la Opción 2:**
+- Estructura de base de datos más limpia
+- Sin datos de prueba contaminando la producción
+- Asegura que las migraciones realmente funcionan
+- Más fácil de reproducir si necesitas configurar staging más tarde
+
+**Los Únicos Datos Que Quizás Quieras Migrar:**
+Si creaste usuarios administradores o datos de configuración esencial localmente, exporta solo esas tablas o filas específicas. No traigas usuarios de prueba, datos dummy o tus sesiones personales de prueba.
+
+### Paso 4: Subiendo Tus Archivos (El Momento de la Verdad)
+
+Ahora estás listo para mover tu código al servidor. Tienes algunas opciones aquí.
+
+**Entendiendo la Estructura de Archivos de Tu Hosting:**
+
+Los hosts compartidos típicamente tienen una estructura como esta:
+```
+/home/usuario/           <- Tu directorio home (empiezas aquí en FTP)
+├── public_html/          <- Raíz web (archivos aquí son públicamente accesibles)
+├── mail/                 <- Almacenamiento de correo
+├── logs/                 <- Logs del servidor
+└── .cpanel/              <- Cosas del panel de control
+```
+
+La carpeta `public_html/` es crucial. Los archivos aquí son accesibles para cualquiera en internet. Los archivos fuera de ella (como tu archivo `.env`, si lo pones en el lugar correcto) están protegidos.
+
+**Método de Subida 1: FTP/SFTP (Más Fácil para Principiantes):**
+
+1. **Descarga un cliente FTP** (FileZilla es gratis y funciona genial)
+2. **Obtén tus credenciales FTP de tu panel de control de hosting**
+3. **Conéctate a tu servidor**
+4. **Navega a la carpeta public_html**
+5. **Sube tus archivos**
+
+**La Manera de CodeIgniter 4:**
+CI4 tiene una estructura específica. Tu carpeta `public/` necesita mapear a la `public_html/` del host. Aquí está cómo:
+
+1. Sube TODO EXCEPTO la carpeta `public/` a `/home/usuario/ci_api/`
+2. Sube el CONTENIDO de tu carpeta `public/` a `/home/usuario/public_html/`
+3. Edita `/home/usuario/public_html/index.php` para que apunte al lugar correcto:
+   ```php
+   // Cambia esta línea
+   $pathsPath = FCPATH . '../app/Config/Paths.php';
+   // A esto (ajusta la ruta según sea necesario)
+   $pathsPath = '/home/usuario/ci_api/app/Config/Paths.php';
+   ```
+
+**Método de Subida 2: Despliegue con Git (Si Tu Host Lo Soporta):**
+
+Algunos hosts te permiten desplegar vía Git. Esto es más limpio pero requiere acceso SSH:
+```bash
+# En tu servidor
+ git clone https://github.com/tuusuario/turepo.git
+ cd turepo
+ composer install --no-dev
+ php spark migrate
+```
+
+**Método de Subida 3: Administrador de Archivos (Sin Software Requerido):**
+
+La mayoría de los paneles de control de hosting tienen un administrador de archivos basado en web. Puedes:
+1. Comprimir tu proyecto localmente
+2. Subir el zip vía el administrador de archivos
+3. Extraerlo en el servidor
+4. Mover los archivos a los lugares correctos
+
+**Lo que hicimos:**
+Usamos FTP con FileZilla para nuestro primer despliegue. Es visual, puedes ver lo que está pasando, y si algo falla, sabes exactamente dónde. A medida que nos sentimos más cómodos, cambiamos al despliegue con Git para actualizaciones.
+
+**Consejo profesional:** La subida toma un tiempo. Iníciala, toma un café, y vuelve. No te sientes ahí viendo las barras de progreso.
+
+### Paso 5: Configurando Tu Dominio (Haciéndolo Oficial)
+
+Si compraste tu dominio de la misma compañía que tu hosting, esto es automático. Si no, necesitas conectarlos.
+
+**Cómo Funcionan Realmente los Nombres de Dominio (La Versión Simple):**
+
+Cuando alguien escribe `tudominio.com` en su navegador:
+1. Su computadora le pregunta a un servidor DNS "¿Cuál es la dirección IP de tudominio.com?"
+2. El servidor DNS la busca y devuelve algo como `192.168.1.100`
+3. Su navegador se conecta a esa dirección IP
+4. Tu servidor de hosting dice "¡Hola! ¿Quieres tudominio.com? Aquí está el sitio web."
+
+**Configurando Tus Nameservers:**
+
+1. **Encuentra los nameservers de tu hosting** (usualmente en tu correo de bienvenida o panel de control)
+   - Se ven así: `ns1.tuhost.com` y `ns2.tuhost.com`
+2. **Inicia sesión donde compraste tu dominio** (Namecheap, GoDaddy, Google Domains, etc.)
+3. **Encuentra la sección "Nameservers" o "DNS"**
+4. **Cambia los nameservers a los de tu host**
+5. **Espera** (esto puede tomar desde 15 minutos hasta 48 horas en propagarse)
+
+**¿Por qué toma tanto tiempo?**
+El DNS es como una gigantesca guía telefónica distribuida. Cuando cambias los nameservers, le estás diciendo a los operadores de la guía telefónica que actualicen sus registros. Algunos verifican actualizaciones frecuentemente (minutos), otros menos frecuentemente (horas o días). Ten paciencia.
+
+**Probando si está funcionando:**
+```bash
+# Usa dig o nslookup para verificar
+ dig tudominio.com
+ 
+# O simplemente visítalo en un navegador
+# ¡Si ves tu sitio, está funcionando!
+```
+
+**La Lista de Verificación "Han Pasado 2 Horas y Nada Funciona":**
+1. Limpia la caché de tu navegador (Ctrl+Shift+R o Cmd+Shift+R)
+2. Prueba un navegador diferente
+3. Prueba acceder desde tu teléfono (red diferente)
+4. Usa una herramienta como https://dnschecker.org/ para ver si se ha propagado globalmente
+5. Verifica que no te equivocaste al escribir los nameservers
+
+### Paso 6: Configurando SSL (El Ícono de Candado Que Te Hace Ver Profesional)
+
+HTTPS ya no es opcional. Los navegadores advierten a los usuarios sobre sitios "inseguros". Google posiciona mejor los sitios HTTPS. Necesitas SSL.
+
+**Las Buenas Noticias:**
+La mayoría de los hosts compartidos ofrecen certificados SSL gratuitos a través de Let's Encrypt. La configuración usualmente es:
+
+1. **Inicia sesión en tu panel de control de hosting**
+2. **Encuentra "SSL/TLS" o "Seguridad" o "Let's Encrypt"**
+3. **Haz clic en "Instalar" o "Habilitar"**
+4. **Selecciona tu dominio**
+5. **Espera 5-10 minutos**
+
+**Lo que pasa detrás de escena:**
+La compañía de hosting solicita un certificado de Let's Encrypt (una organización sin fines de lucro que proporciona SSL gratuito). Let's Encrypt verifica que controlas el dominio revisando tus nameservers. Una vez verificado, emiten el certificado. Tu host lo instala automáticamente.
+
+**Después de que SSL está activo:**
+1. Actualiza tu archivo `.env`:
+   ```bash
+   app.baseURL = 'https://tudominio.com'
+   ```
+2. Prueba visitando `https://tudominio.com` (nota el https://)
+3. Deberías ver un ícono de candado en tu navegador
+
+**Problemas Comunes de SSL:**
+- **Advertencias de contenido mixto**: Estás cargando recursos HTTP en una página HTTPS. Actualiza todas tus URLs para usar https://
+- **Certificado no confiado**: El certificado todavía se está propagando. Espera una hora e intenta de nuevo.
+- **Desajuste de dominio**: El certificado es para www.tudominio.com pero estás accediendo a tudominio.com (o viceversa). La mayoría de los hosts arreglan esto automáticamente, pero a veces necesitas especificar ambos.
+
+### Paso 7: Las Pruebas Finales (Antes de Contarle a Nadie)
+
+No anuncies tu lanzamiento todavía. Prueba todo primero.
+
+**La Lista de Verificación de Prueba Básica:**
+
+1. **La página de inicio carga**: Visita `https://tudominio.com`—¿ves algo? ¿Algo?
+2. **Los endpoints de API funcionan**: Prueba un endpoint GET simple
+   ```bash
+   curl https://tudominio.com/api/users
+   ```
+3. **La autenticación funciona**: Intenta registrar un nuevo usuario
+4. **La base de datos está conectada**: ¿Puedes crear/leer datos?
+5. **El manejo de errores funciona**: Intenta acceder a un endpoint inexistente. ¿Obtienes un 404 apropiado o un error del servidor?
+6. **HTTPS es forzado**: Intenta visitar `http://tudominio.com` (sin la s). ¿Redirige a https?
+
+**Problemas Comunes del Primer Despliegue:**
+
+**"Error 500 del Servidor Interno"**
+- Verifica que tu archivo `.env` existe y tiene valores correctos
+- Verifica los permisos de archivos (especialmente la carpeta `writable/`)
+- Verifica los logs de error de tu host (en cPanel)
+- Habilita temporalmente el logging de errores de CI4 para ver el error real:
+  ```bash
+  CI_DEBUG = true  # ¡Solo temporalmente!
+  ```
+
+**"Falló la conexión a la base de datos"**
+- Credenciales de base de datos incorrectas en `.env`
+- El usuario de la base de datos no tiene privilegios apropiados
+- La base de datos no existe (¿la creaste en cPanel?)
+- Hostname incorrecto (algunos hosts usan algo diferente de "localhost")
+
+**"404 No Encontrado en todas las rutas"**
+- Tu archivo `.htaccess` no está subido o está mal
+- mod_rewrite no está habilitado (pregunta a tu host)
+- Los archivos de tu carpeta `public/` están en el lugar equivocado
+
+**"Errores de CORS"**
+- Actualiza tu configuración de `Cors.php` para permitir tu dominio de producción
+- Reinicia tu servidor (algunas configs se cachean)
+
+### Paso 8: Monitoreo y Mantenimiento (Manteniéndolo Vivo)
+
+¡Tu API está en vivo! Pero el trabajo no ha terminado. Necesitas vigilarlo.
+
+**Qué Monitorear:**
+
+1. **Tiempo de actividad**: ¿El servidor está respondiendo? (La mayoría de los hosts proporcionan esto)
+2. **Logs de error**: ¿Hay errores que no atrapaste en las pruebas?
+3. **Rendimiento**: ¿Es lento? (Usa herramientas como GTmetrix o Pingdom)
+4. **Seguridad**: ¿Alguna actividad sospechosa?
+
+**Dónde Encontrar Logs:**
+
+La mayoría de los hosts compartidos proporcionan:
+- **Logs de error**: cPanel → Métricas → Errores
+- **Logs de acceso**: cPanel → Métricas → Acceso Directo
+- **Logs de aplicación**: En tu carpeta `writable/logs/`
+
+**Configurando Monitoreo Básico:**
+
+Herramientas gratuitas que funcionan genial:
+- **UptimeRobot**: Verifica si tu sitio está arriba cada 5 minutos. El plan gratuito cubre 50 monitores.
+- **Google Search Console**: Te dice sobre problemas de indexación y problemas de seguridad
+- **Las estadísticas integradas de tu hosting**: Usualmente encontradas en cPanel
+
+**Estrategia de Respaldos (No Te Lo Saltes):**
+
+La mayoría de los hosts hacen respaldos automatizados, pero tú también deberías:
+
+1. **Respaldos de base de datos**: Exporta tu base de datos semanalmente
+2. **Respaldos de archivos**: Descarga tu sitio completo mensualmente
+3. **Control de versiones**: Mantén tu código en Git (ya deberías estar haciendo esto)
+
+**Configurando Respaldos Automatizados:**
+Muchos hosts ofrecen servicios de respaldo automatizados (a veces pagados). Si quieres hacerlo tú mismo:
+
+```bash
+# Agrega esto a tu máquina local como un cron job semanal
+ mysqldump -h tuhost.com -u usuario -p'contraseña' nombre_base_datos > backup_$(date +%Y%m%d).sql
+```
+
+### El Día del Lanzamiento
+
+Has hecho el trabajo. Ahora es momento de activar el interruptor.
+
+**El Enfoque de Lanzamiento Suave:**
+En lugar de anunciar al mundo inmediatamente, prueba esto:
+
+1. **Despliega un día antes**: Date tiempo para arreglar problemas
+2. **Prueba con un grupo pequeño**: Pide a 2-3 amigos que lo prueben
+3. **Monitorea por 24 horas**: Asegúrate de que sea estable
+4. **Luego anuncia**: Comparte con tu audiencia real
+
+**La Lista de Verificación del Día del Lanzamiento:**
+- [ ] El sitio carga correctamente
+- [ ] El certificado SSL está activo
+- [ ] Los endpoints de API responden
+- [ ] La autenticación funciona
+- [ ] La app móvil (si aplica) se conecta exitosamente
+- [ ] El manejo de errores funciona
+- [ ] La base de datos está guardando datos
+- [ ] Los respaldos están configurados
+- [ ] El monitoreo está activo
+- [ ] La documentación está actualizada con URLs de producción
+
+**Cuando Las Cosas Salen Mal (Y Podrían):**
+
+Aquí está la verdad: algo se romperá. Quizás no hoy, quizás no esta semana, pero eventualmente. La diferencia entre un lanzamiento estresante y uno tranquilo es la preparación.
+
+**Ten esto listo:**
+1. **Plan de rollback**: Saber cómo revertir a la versión anterior rápidamente
+2. **Contacto de soporte**: El número de soporte o chat de tu host
+3. **Acceso a logs de error**: Saber dónde encontrarlos
+4. **Contacto de emergencia**: Alguien técnico que pueda ayudar si estás atascado
+
+### Decisión: Hosting Compartido vs. VPS para Despliegue Inicial
+
+**Fecha**: 17 de febrero de 2026
+**Contexto**: Eligiendo infraestructura de despliegue para LaunchPad API
+
+**Opciones Consideradas**:
+1. Hosting compartido ($3-10/mes)
+2. VPS como DigitalOcean o Linode ($20-50/mes)
+3. Plataforma-como-Servicio como Heroku (plan gratuito disponible, pero escala caro)
+4. Hosting en la nube como AWS/GCP (excesivo y complejo)
+
+**Decisión**: Hosting compartido para el lanzamiento inicial, con criterios claros para cuándo actualizar
+
+**Razonamiento**:
+- **Hosting compartido**: Perfecto para 0-1000 usuarios. Sin administración de servidores. Barato. Fácil.
+- **VPS**: Mejor rendimiento y control, pero requiere conocimientos de administración Linux que aún no tenemos
+- **PaaS**: Conveniente pero se vuelve caro rápido ($25+/mes para cargas de trabajo de producción)
+- **Nube**: Excesivo masivo. Pasaríamos más tiempo aprendiendo AWS que construyendo nuestro producto.
+
+**Disparadores de actualización** (cuándo consideraremos mudarnos a VPS):
+- Alcanzando consistentemente los límites de recursos
+- Necesidad de software de servidor personalizado
+- Ingresos justifican el costo extra
+- Tenemos tiempo para aprender administración de servidores
+
+**Compensaciones**:
+- **Pros**: Asequible, cero mantenimiento, configuración rápida, perfecto para fase de validación
+- **Contras**: Control limitado, recursos compartidos, no puedes instalar software arbitrario
+
+**¿Reversible?** Sí. Moverse de hosting compartido a VPS es un camino de crecimiento común. CI4 lo hace relativamente indoloro ya que el código de la aplicación no cambia—solo la configuración del servidor.
+
+### Tu API Está en Vivo. ¿Y Ahora Qué?
+
+El despliegue no es el final del viaje—es el principio. Tu API es ahora algo vivo que necesita cuidado y alimentación.
+
+Pero aquí está lo hermoso: has construido algo real. Tomaste una idea, aprendiste la tecnología, escribiste el código, y lo pusiste en internet donde cualquiera puede usarlo. Eso no es trivial. Eso es impresionante.
+
+El proceso de despliegue por el que acabamos de caminar es algo que muchos desarrolladores nunca entienden completamente. Usan plataformas automatizadas que ocultan la complejidad, y luego entran en pánico cuando algo sale mal. Tú ahora entiendes cada pieza: los archivos, la base de datos, el dominio, el SSL, todo el stack.
+
+Ese conocimiento es poder. Significa que cuando algo se rompe, sabes dónde buscar. Cuando necesites escalar, sabes qué actualizar. Cuando alguien pregunte "¿cómo funciona tu API?" puedes explicarlo desde los cimientos.
+
+Bienvenido al mundo de producción. Tu API está en vivo. Tus usuarios están esperando. Ve a hacer algo asombroso.
+
+## El Arte de Hablarle a la IA: Una Guía Práctica de Prompt Engineering
+
+![Portada LaunchPad API](docs-graphics/cover_horizontal_es.png)
+
+Aquí hay algo que nos tomó tiempo descubrir: **La forma en que le pides ayuda a la IA importa tanto como tener buena documentación.** Es como la diferencia entre pedirle a un contratista calificado "Constrúyeme una casa" versus "Constrúyeme una casa de tres dormitorios con plano abierto, usando materiales sostenibles, diseñada para una familia con niños pequeños." La misma persona, resultados completamente diferentes.
+
+Cuando comenzamos a usar asistentes de IA, cometimos un error clásico. Escribíamos cosas como:
+- "Haz que esto funcione"
+- "Arregla este código"
+- "¿Cómo hago autenticación?"
+
+Y obteníamos... resultados más o menos. A veces el código funcionaba. A veces estaba desactualizado. A veces era técnicamente correcto pero completamente equivocado para nuestra situación específica. Pasamos horas depurando problemas que podrían haberse evitado si simplemente hubiéramos hecho mejores preguntas.
+
+### Por Qué el Prompt Engineering No Es Solo "Ser Específico"
+
+Quizás pienses que el prompt engineering significa usar términos técnicos elegantes o escribir ensayos a la IA. No lo es. Se trata de darle contexto a la IA para que te pueda dar respuestas relevantes en lugar de genéricas.
+
+Piénsalo así: Si entras a un restaurante y dices "Tengo hambre", el mesero no tiene idea si traerte una ensalada o un bistec. Pero si dices "Tengo hambre, soy vegetariano, me encanta la comida picante y tengo prisa", ahora pueden recomendarte el platillo perfecto.
+
+La IA funciona de la misma manera. Cuantos más contexto proporciones sobre:
+- Qué estás intentando lograr (el objetivo)
+- Qué restricciones tienes (los límites)
+- Qué ya has intentado (la historia)
+- Cómo se ve tu proyecto (el contexto)
+
+...mejor podrá ayudarte la IA.
+
+### El Framework Que Usamos para Cada Prompt
+
+Después de semanas de prueba y error, desarrollamos un framework simple que mejoró dramáticamente la calidad de la asistencia de IA. Lo llamamos el **Framework ACTS** (porque todo acrónimo necesita un nombre elegante, aparentemente):
+
+**A - Asignar un Rol**
+**C - Clarificar el Contexto**
+**T - Especificar la Tarea**
+**S - Establecer los Estándares**
+
+Permíteme desglosar qué significa cada uno de estos con ejemplos reales de nuestro proyecto.
+
+#### A - Asignar un Rol
+
+Este es el ingrediente mágico que la mayoría de la gente omite. Cuando le dices a la IA que "actúe como" algo específico, cambia toda su perspectiva y base de conocimientos para servir ese rol.
+
+**En lugar de:** "¿Cómo creo un endpoint de API?"
+
+**Di:** "Actúa como un desarrollador senior de CodeIgniter 4 con 10 años de experiencia construyendo APIs REST seguras. Estoy construyendo un endpoint para registro de usuarios."
+
+¿Ves la diferencia? El primer prompt te da una respuesta genérica que podría funcionar en cualquier framework. El segundo prompt le dice a la IA que use su conocimiento de CodeIgniter específicamente, mejores prácticas de API REST y consideraciones de seguridad—todas las cosas que nos importan profundamente.
+
+**Otros ejemplos de roles que usamos:**
+- "Actúa como un experto en seguridad auditando este código de autenticación"
+- "Actúa como un ingeniero de DevOps revisando nuestra estrategia de despliegue"
+- "Actúa como un escritor técnico documentando esta API para desarrolladores móviles"
+- "Actúa como un contribuyente principal de CodeIgniter 4 revisando esta implementación"
+
+Cada rol activa diferentes conocimientos y prioridades. Un "experto en seguridad" señalará vulnerabilidades que un "desarrollador" podría pasar por alto. Un "escritor técnico" sugerirá mensajes de error más claros. El rol da forma a la respuesta.
+
+#### C - Clarificar el Contexto
+
+Aquí es donde le cuentas a la IA sobre tu situación específica. Recuerda, la IA no sabe que estás usando CodeIgniter 4, Shield para autenticación y MySQL para tu base de datos—a menos que se lo digas.
+
+**En lugar de:** "Necesito proteger esta ruta"
+
+**Di:** "Estoy trabajando en un proyecto de CodeIgniter 4 usando Shield para autenticación. La estructura del proyecto sigue las convenciones de CI4 con controladores en app/Controllers/Api/, modelos en app/Models/, y rutas definidas en app/Config/Routes.php. Necesito proteger un endpoint de API para que solo usuarios autenticados con tokens bearer válidos puedan acceder a él."
+
+Ahora la IA sabe:
+- El framework (CodeIgniter 4)
+- La biblioteca de autenticación (Shield)
+- La estructura de directorios
+- El mecanismo específico de protección (tokens bearer)
+
+Puede darte código exacto que se ajuste a tu proyecto en lugar de ejemplos genéricos de middleware de Laravel o Express.js.
+
+**Contexto clave para incluir siempre:**
+- Tu stack tecnológico (framework, bibliotecas, base de datos)
+- La estructura de tu proyecto (dónde viven los archivos)
+- Tu método de autenticación (sesión, token, JWT, etc.)
+- Qué ya has intentado (si estás depurando)
+- El archivo o código específico con el que estás trabajando
+
+#### T - Especificar la Tarea
+
+Sé cristalino sobre qué quieres que haga la IA. Las solicitudes vagas obtienen respuestas vagas.
+
+**En lugar de:** "Haz esto mejor"
+
+**Di:** "Revisa este método del controlador y:
+1. Identifica cualquier vulnerabilidad de seguridad
+2. Sugiere mejoras en validación de entrada
+3. Recomienda mejor manejo de errores
+4. Muéstrame el código mejorado con comentarios explicando cada cambio"
+
+Ahora la IA tiene una lista de verificación. Sabe exactamente qué significa "mejor" en este contexto.
+
+**Consejos para especificar tareas:**
+- Usa verbos de acción: "Revisa," "Refactoriza," "Explica," "Compara," "Implementa"
+- Sé específico sobre los entregables: "código," "explicación," "lista de pros/contras"
+- Establece límites: "Manténlo simple" o "Prioriza la seguridad sobre la brevedad"
+- Pide múltiples opciones: "Dame dos enfoques y explica cuándo usar cada uno"
+
+#### S - Establecer los Estándares
+
+Aquí es donde defines qué se ve "bueno" para tu proyecto. Diferentes equipos tienen diferentes prioridades—algunos se preocupan por el rendimiento, otros por la legibilidad, otros por la seguridad sobre todo lo demás.
+
+**En lugar de:** "Escribe este código"
+
+**Di:** "Escribe este código siguiendo estos estándares:
+- Prioriza la seguridad y validación de entrada sobre la brevedad del código
+- Sigue las convenciones y estilo de código de CodeIgniter 4
+- Incluye comentarios PHPDoc comprehensivos explicando parámetros y valores de retorno
+- Maneja todos los casos de error elegantemente con códigos de estado HTTP apropiados
+- Usa type hints donde sea apropiado para PHP 8.2+
+- No uses bibliotecas externas a menos que sea absolutamente necesario"
+
+Ahora la IA conoce tus valores. No te dará líneas ingeniosas imposibles de mantener. No omitirá el manejo de errores para hacer el código más corto. Entiende tu definición de calidad.
+
+**Estándares que comúnmente establecemos:**
+- "La seguridad es más importante que la conveniencia"
+- "Explica tu razonamiento para cada decisión significativa"
+- "Escribe código que un desarrollador junior pueda entender"
+- "Considera casos límite y validación"
+- "Sigue los patrones existentes en nuestra base de código"
+
+### Ejemplos Reales de Nuestro Proyecto
+
+Déjame mostrarte prompts reales que usamos mientras construíamos LaunchPad API. Estos no son teóricos—están copiados directamente de nuestro historial de chat (con información sensible removida).
+
+#### Ejemplo 1: Creando un Nuevo Endpoint
+
+**Nuestro prompt:**
+```
+Actúa como un desarrollador senior de CodeIgniter 4 especializado en diseño de APIs REST.
+
+Contexto:
+- Estamos construyendo LaunchPad API usando CodeIgniter 4.5.x con autenticación Shield
+- Nuestros controladores de API están en app/Controllers/Api/ y extienden ResourceController
+- Estamos usando MySQL con el Query Builder de CI4
+- El proyecto sigue el autoloading PSR-4 y las convenciones de CI4
+
+Tarea:
+Crea un método de controlador que maneje solicitudes GET para recuperar una lista paginada de usuarios. El endpoint debe:
+1. Requerir autenticación (tokens bearer vía Shield)
+2. Soportar parámetros de paginación (page, per_page)
+3. Permitir filtrado opcional por estado de usuario (active, inactive)
+4. Devolver una respuesta JSON con códigos de estado HTTP apropiados
+5. Incluir metadata sobre registros totales y paginación
+
+Estándares:
+- Usa los métodos incorporados de ResourceController donde sea apropiado
+- Valida todos los parámetros de entrada
+- Maneja errores de base de datos elegantemente
+- Incluye comentarios PHPDoc
+- Sigue los patrones de ResponseTrait de CI4 para consistencia
+- La seguridad es la máxima prioridad—asume que toda entrada es maliciosa
+```
+
+**Lo que recibimos:**
+La IA nos dio un método completo y listo para producción con validación de entrada, manejo de errores, paginación apropiada usando las características incorporadas de CI4, y consideraciones de seguridad. Explicó por qué se hicieron ciertas elecciones (como usar Query Builder para prevenir inyección SQL). Tomó 10 segundos en lugar de los 30 minutos que nos habría tomado escribir y probarlo a nosotros.
+
+#### Ejemplo 2: Depurando un Problema de Autenticación
+
+**Nuestro prompt:**
+```
+Actúa como un experto en seguridad de CodeIgniter 4 depurando un problema de autenticación.
+
+Contexto:
+- Proyecto de CI4 con autenticación Shield
+- Estamos usando tokens de API (no sesiones)
+- El filtro TokenAuth está aplicado a nuestras rutas de API
+- Los usuarios pueden generar tokens vía /api/auth/login exitosamente
+- Los tokens se almacenan en la tabla auth_identities
+
+El Problema:
+Cuando hacemos solicitudes a endpoints protegidos con un token válido en el encabezado Authorization (Bearer TOKEN), obtenemos una respuesta 401 No Autorizado. El token definitivamente existe en la base de datos y no está expirado.
+
+Lo que hemos verificado:
+- El encabezado Authorization se está enviando correctamente (verificado con Postman)
+- El token existe en auth_identities con tipo 'access_token'
+- El expires_at del token es null (no debería expirar)
+- El filtro definitivamente se está aplicando (lo vemos en la configuración de rutas)
+
+Tarea:
+1. Lista las causas más probables de este problema en orden de probabilidad
+2. Para cada causa, explica cómo verificar si es el problema
+3. Proporciona los cambios específicos de código/configuración necesarios para arreglarlo
+4. Explica por qué está pasando esto para que podamos prevenirlo en el futuro
+```
+
+**Lo que recibimos:**
+La IA nos guió a través de un proceso de depuración sistemático. Resultó que habíamos olvidado habilitar el autenticador "token" en la configuración de Shield (solo "session" estaba habilitado). La IA explicó que Shield necesita configuración explícita para qué métodos de auth usar, nos dio el archivo de configuración exacto para editar, y explicó la diferencia entre autenticación por sesión y token para que entendiéramos por qué esto importaba.
+
+Esta respuesta nos ahorró probablemente 2 horas de depuración de prueba y error aleatoria.
+
+#### Ejemplo 3: Revisando Seguridad
+
+**Nuestro prompt:**
+```
+Actúa como un auditor de seguridad revisando nuestra implementación de autenticación de API.
+
+Contexto:
+Estamos construyendo una API de producción que manejará datos sensibles de usuarios. Hemos implementado autenticación Shield con la siguiente configuración:
+[pegamos nuestra configuración y métodos clave del controlador aquí]
+
+Tarea:
+Realiza una auditoría de seguridad y dinos:
+1. Qué estamos haciendo bien (fortalezas de seguridad)
+2. Qué vulnerabilidades existen o podrían existir
+3. Qué mejores prácticas de la industria nos estamos perdiendo
+4. Recomendaciones específicas con ejemplos de código para cualquier arreglo necesario
+5. Cómo probar que nuestra seguridad está funcionando correctamente
+
+Estándares:
+- Sé exhaustivo—asume que esto será atacado por actores sofisticados
+- Prioriza consideraciones del OWASP Top 10
+- Considera tanto vulnerabilidades técnicas como fallas de lógica
+- Explica el "por qué" detrás de cada recomendación, no solo el "qué"
+```
+
+**Lo que recibimos:**
+La IA identificó tres problemas que no habíamos considerado:
+1. No estábamos limitando la tasa de nuestro endpoint de login (vulnerable a fuerza bruta)
+2. Nuestros mensajes de error eran demasiado específicos, potencialmente filtrando información sobre qué usuarios existen
+3. No estábamos validando la fortaleza de contraseñas durante el registro
+
+Para cada problema, explicó el vector de ataque, nos mostró exactamente cómo arreglarlo con código, y explicó por qué importaba. Este nivel de revisión de seguridad habría costado cientos de dólares de un consultor. Lo obtuvimos en 60 segundos.
+
+### Los Prompts Que Usamos Una y Otra Vez
+
+Después de construir LaunchPad API, notamos que estábamos usando ciertos patrones de prompt repetidamente. Aquí están nuestras plantillas "de referencia":
+
+**Para generar código nuevo:**
+```
+Actúa como un [rol] con experiencia en [tecnología específica].
+
+Contexto:
+- [Breve descripción del proyecto]
+- [Detalles del stack tecnológico]
+- [Ubicaciones de archivos relevantes]
+- [Cualquier configuración relevante]
+
+Tarea:
+[Tarea específica y accionable con requisitos numerados si es compleja]
+
+Estándares:
+- [Prioridad 1: usualmente seguridad o rendimiento]
+- [Requisitos de estilo de código]
+- [Requisitos de documentación]
+- [Expectativas de manejo de errores]
+```
+
+**Para depurar:**
+```
+Actúa como un experto depurador especializado en [tecnología].
+
+Contexto:
+- [Qué estás construyendo]
+- [Qué se supone que debe pasar]
+- [Qué está pasando realmente]
+- [Mensajes de error o comportamiento inesperado]
+
+Lo que ya he intentado:
+1. [Primera cosa que verificaste]
+2. [Segunda cosa que verificaste]
+3. [Cualquier prueba relevante que ejecutaste]
+
+Tarea:
+1. Identifica las causas raíz más probables
+2. Explica cómo verificar cada una
+3. Proporciona el arreglo con código
+4. Explica por qué pasó esto para prevenirlo en el futuro
+```
+
+**Para explicar conceptos:**
+```
+Actúa como un mentor técnico paciente explicando [concepto] a un desarrollador de nivel [nivel de experiencia].
+
+Contexto:
+Estoy trabajando en [breve descripción] y tratando de entender [concepto específico]. He leído [lo que ya has leído] pero todavía no tengo claro [confusión específica].
+
+Tarea:
+Explica [concepto] en términos simples usando:
+- Una analogía de la vida cotidiana
+- Un ejemplo de código simple
+- La forma específica en que se aplica a mi situación
+- Errores comunes a evitar
+
+Estándares:
+- Asume que soy inteligente pero nuevo en esta área específica
+- No uses jerga sin explicarla
+- Conéctalo a beneficios prácticos (¿por qué debería importarme?)
+```
+
+**Para comparar opciones:**
+```
+Actúa como un arquitecto senior ayudando a elegir entre enfoques técnicos.
+
+Contexto:
+Estamos decidiendo entre [Opción A] y [Opción B] para [caso de uso específico].
+
+Situación actual:
+- [Breve contexto del proyecto]
+- [Cualquier restricción o requisito]
+- [Nivel de experiencia del equipo]
+- [Necesidades de rendimiento/seguridad]
+
+Tarea:
+Compara estos enfoques a través de estas dimensiones:
+1. Implicaciones de seguridad
+2. Características de rendimiento
+3. Mantenibilidad y legibilidad
+4. Curva de aprendizaje para el equipo
+5. Escalabilidad a largo plazo
+
+Para cada opción, proporciona:
+- Pros y contras claros
+- Cuándo elegir esta opción
+- Un breve ejemplo de código mostrando la implementación
+- Cualquier truco o error común
+
+Estándares:
+- Sé objetivo—no favorezcas uno solo porque es más nuevo o cool
+- Considera nuestro contexto (somos [situación del equipo])
+- Señala cualquier decisión irreversible
+```
+
+### Por Qué Esto Importa Más de Lo Que Piensas
+
+Quizás estés pensando, "Esto parece mucho trabajo solo para hacer una pregunta." Y al principio, así se siente. Escribir un prompt detallado toma 2-3 minutos en lugar de 10 segundos.
+
+Pero aquí está lo que aprendimos: **Un buen prompt ahorra horas.**
+
+Cuando escribes un prompt vago, obtienes una respuesta vaga. Luego pasas 20 minutos tratando de implementarlo, solo para darte cuenta de que no se ajusta a tu situación. Así que vuelves, aclaras, intentas de nuevo. Tres ciclos después, has pasado una hora.
+
+O peor, obtienes código que parece funcionar pero tiene problemas ocultos—agujeros de seguridad, problemas de rendimiento, malas prácticas. No te enteras hasta semanas después cuando algo se rompe o un usuario explota una vulnerabilidad.
+
+Un prompt detallado toma 3 minutos en escribirse pero te da exactamente lo que necesitas la primera vez. Considera tus restricciones, sigue tus estándares, y se ajusta a tu proyecto. Lo implementas una vez y funciona.
+
+**Las matemáticas son simples:** 3 minutos de buen prompting vs. 60+ minutos de ida y vuelta y depuración. Más la tranquilidad de saber que obtuviste una solución segura y de alta calidad.
+
+### Errores Comunes que Cometimos (Para Que Tú No Los Hagas)
+
+Déjame compartir los errores que cometimos mientras aprendíamos esto. Quizás reconoces algunos de estos:
+
+**Error 1: Ser demasiado breve**
+- Lo que hicimos: "Arregla esto"
+- Lo que pasó: La IA hizo suposiciones, cambió cosas que no queríamos que cambiara, e introdujo nuevos problemas
+- La solución: Siempre explica qué significa "arreglar" y proporciona contexto
+
+**Error 2: No especificar el rol**
+- Lo que hicimos: Hicimos preguntas generales de programación sin asignar experiencia
+- Lo que pasó: Obtuvimos respuestas genéricas que perdieron mejores prácticas específicas del framework
+- La solución: Siempre comienza con "Actúa como un [experto específico en tecnología específica]"
+
+**Error 3: No establecer prioridades**
+- Lo que hicimos: "Haz este código mejor"
+- Lo que pasó: La IA optimizó por brevedad y creó líneas de una sola línea ilegibles
+- Lo que queríamos: Seguridad y mantenibilidad sobre astucia
+- La solución: Declara explícitamente tus prioridades
+
+**Error 4: Pedir código sin explicación**
+- Lo que hicimos: "Dame el código para X"
+- Lo que pasó: Obtuvimos código funcional pero no lo entendimos, no pudimos modificarlo, no pudimos depurarlo
+- La solución: Pide siempre "explica cómo funciona esto" o "agrega comentarios explicando cada parte"
+
+**Error 5: No proporcionar contexto de archivos**
+- Lo que hicimos: Pegamos un fragmento de código sin decir de qué archivo era
+- Lo que pasó: La IA sugirió imports y namespaces que no coincidían con nuestra estructura
+- La solución: Menciona siempre la ruta del archivo y la estructura del proyecto
+
+**Error 6: Tener miedo de hacer preguntas "tontas"**
+- Lo que hicimos: Luchamos con conceptos que no entendíamos en lugar de pedir aclaración
+- Lo que pasó: Construimos características sobre cimientos inestables, creamos deuda técnica
+- La solución: Usa el rol de "mentor paciente" y pide explicaciones en términos simples. Sin juicio, solo aprendizaje.
+
+### El Cambio de Mentalidad: La IA como Socio Colaborativo
+
+Aquí está el cambio filosófico que hizo toda la diferencia para nosotros:
+
+**Mentalidad antigua:** "La IA es una herramienta que uso para obtener respuestas"
+**Nueva mentalidad:** "La IA es un socio colaborativo que necesita contexto para ser útil"
+
+Cuando ves a la IA como un socio, naturalmente proporcionas más contexto. Explicas tus objetivos, restricciones y razonamiento. Tienes un diálogo en lugar de hacer demandas.
+
+Piensa en cómo trabajarías con un desarrollador humano:
+- No solo dirías "arregla esto" y te irías
+- Explicarías qué está mal, qué has intentado, y qué es el éxito
+- Compartirías tu estructura de proyecto y estándares
+- Escucharías sus preguntas y proporcionarías aclaración
+
+Trata a la IA de la misma manera. Los prompts que funcionan mejor son los que tratan a la IA como un colega conocedor que acaba de unirse a tu proyecto y necesita ponerse al día.
+
+### Nuestro Checklist de Prompt Engineering
+
+Antes de enviar cualquier prompt a nuestro asistente de IA, ahora pasamos por este checklist mental:
+
+**Asignación de Rol:**
+- [ ] ¿Especificé qué experiencia debe usar la IA?
+- [ ] ¿Es el rol específico a mi stack tecnológico?
+- [ ] ¿Coincide el rol con el tipo de ayuda que necesito (desarrollador vs. experto en seguridad vs. arquitecto)?
+
+**Contexto Proporcionado:**
+- [ ] ¿Mencioné el framework y bibliotecas que estoy usando?
+- [ ] ¿Describí la estructura de mi proyecto?
+- [ ] ¿Incluí código o configuración relevante?
+- [ ] Si estoy depurando, ¿dije qué ya he intentado?
+
+**Claridad de Tarea:**
+- [ ] ¿Es la tarea específica y accionable?
+- [ ] ¿Dividí tareas complejas en pasos numerados?
+- [ ] ¿Especificé qué entregables quiero (código, explicación, comparación)?
+
+**Estándares Establecidos:**
+- [ ] ¿Declaré mis prioridades (seguridad, rendimiento, legibilidad)?
+- [ ] ¿Mencioné cualquier restricción o requisito?
+- [ ] ¿Especificé expectativas de estilo de código o documentación?
+
+**Verificación de Tono:**
+- [ ] ¿Estoy tratando a la IA como un socio colaborativo?
+- [ ] ¿Proporcioné suficiente detalle para que la IA entienda mi situación?
+- [ ] ¿Un desarrollador humano entendería lo que estoy pidiendo?
+
+Si podemos marcar todas estas casillas, obtenemos grandes resultados casi siempre.
+
+### Juntándolo Todo: Un Ejemplo Completo
+
+Déjame mostrarte un ejemplo final y comprehensivo que demuestra todo lo que hemos aprendido.
+
+**La Situación:**
+Necesitábamos implementar una característica de restablecimiento de contraseña. Esto es crítico para la seguridad, así que queríamos ser extra cuidadosos.
+
+**Nuestro Prompt:**
+```
+Actúa como un experto senior en seguridad de CodeIgniter 4 con profundo conocimiento de autenticación Shield y mejores prácticas modernas de seguridad.
+
+Contexto:
+Estamos construyendo LaunchPad API, una API REST de producción usando:
+- CodeIgniter 4.5.x
+- Shield para autenticación (actualmente usando tokens)
+- Base de datos MySQL
+- PHP 8.2+
+- Siguiendo convenciones de CI4 y estándares PSR
+
+Nuestra estructura de proyecto:
+- Controladores: app/Controllers/Api/
+- Modelos: app/Models/
+- Config: app/Config/
+- Rutas: app/Config/Routes.php
+
+Configuración actual de autenticación:
+[Pegamos nuestra configuración de Shield aquí]
+
+La Tarea:
+Implementa un flujo seguro de restablecimiento de contraseña para nuestra API que:
+1. Permita a usuarios solicitar un restablecimiento de contraseña vía su email
+2. Genere un token seguro y limitado en tiempo
+3. Envíe un email con un enlace de restablecimiento
+4. Valide el token cuando el usuario haga clic en el enlace
+5. Permita establecer una nueva contraseña con validación
+6. Invalide el token después de usarlo o expirar
+
+Requisitos de Seguridad (en orden de prioridad):
+1. Prevenir ataques de tiempo (no revelar si el email existe)
+2. Los tokens deben ser criptográficamente seguros y limitados en tiempo
+3. Prevenir ataques de repetición (token solo puede usarse una vez)
+4. Validar fortaleza de nueva contraseña
+5. Registrar todos los intentos de restablecimiento de contraseña para monitoreo de seguridad
+6. Limitar la tasa de solicitudes de restablecimiento para prevenir abuso
+
+Estándares de Código:
+- Usa las características incorporadas de Shield donde sea posible
+- Sigue los patrones de validación y respuesta de CI4
+- Incluye comentarios PHPDoc comprehensivos
+- Maneja todos los casos de error elegantemente
+- Usa type hints para PHP 8.2+
+- Asume que toda entrada es maliciosa
+
+Entregables:
+1. El(s) método(s) del controlador para manejar solicitudes de restablecimiento
+2. Cualquier cambio de modelo necesario
+3. Configuración de rutas
+4. Actualizaciones de configuración de Shield
+5. Una breve explicación de las medidas de seguridad implementadas
+6. Sugerencias de pruebas para verificar la seguridad
+```
+
+**El Resultado:**
+La IA nos dio una implementación completa y lista para producción con:
+- Generación segura de tokens usando las características de seguridad de CI4
+- Búsqueda de email resistente a ataques de tiempo
+- Manejo apropiado de expiración de tokens
+- Implementación de limitación de tasa
+- Validación comprehensiva
+- Mensajes de error claros que no filtran información
+- Comentarios detallados explicando cada decisión de seguridad
+
+Nos tomó 5 minutos revisarlo y adaptarlo a nuestras necesidades exactas. Sin un buen prompting, podríamos haber obtenido una implementación básica que "funcionara" pero tuviera agujeros de seguridad que descubriríamos meses después cuando alguien los explotara.
+
+### La Conclusión sobre Prompt Engineering
+
+El prompt engineering no se trata de manipular a la IA o usar palabras clave especiales. Se trata de comunicación clara—la misma habilidad que usas cuando trabajas con colegas humanos.
+
+Los mejores prompts:
+- Establecen expectativas claras (asignación de rol)
+- Proporcionan contexto necesario (clarificar la situación)
+- Definen metas específicas (especificar la tarea)
+- Establecen estándares de calidad (fijar el nivel)
+
+Cuando recibes una mala respuesta de la IA, usualmente no es porque la IA sea mala—es porque el prompt estuvo incompleto. La IA te dio exactamente lo que pediste; simplemente no pediste lo correcto.
+
+**Nuestro consejo:** Gasta 3 minutos escribiendo un prompt detallado, ahorra 3 horas de depuración. Trata a la IA como el socio conocedor que es, dale el contexto que necesita, y te sorprenderás de la calidad de ayuda que recibes.
+
+Esta es la pieza final de la metodología de Vibe Coding. Con buena documentación, habilidades de IA entrenadas, bibliotecas apropiadas, y prompting efectivo, tienes todo lo que necesitas para construir software de producción a un ritmo que parecería imposible para desarrolladores tradicionales.
+
+Ahora hablemos de cómo documentamos todo para que nuestros yo futuros (y nuestros asistentes de IA) puedan entender el razonamiento detrás de cada decisión.
 
 ## La Filosofía de AGENTS.md: Documentando Todo
 

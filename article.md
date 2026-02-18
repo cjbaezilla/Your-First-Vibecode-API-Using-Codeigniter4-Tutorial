@@ -1,6 +1,166 @@
 # Vibe Coding Your First API: How We Built LaunchPad API in Days (Not Months)
 
+![LaunchPad API Promo](docs-graphics/promo_horizontal_en.png)
+
 *A real-world guide for entrepreneurs who want to build their backend without hiring a developer or drowning in technical complexity*
+
+---
+
+## How to Use This Guide (Yes, It's Long—Here's Why That's Actually Good)
+
+Let's be honest right up front: this guide is extensive. If you're looking for a quick "copy-paste this code and you'll have an API in 10 minutes" tutorial, you're going to be disappointed. And honestly, that's a good thing, because those quick tutorials are exactly why so many entrepreneurs end up with broken, insecure systems that cost them thousands to fix later.
+
+### Why We Made It This Way
+
+When I first started learning to build software, I was frustrated by the same thing you might be feeling right now. Every tutorial skipped the parts I actually needed to understand. They'd say "just run this command" without explaining why. They'd gloss over security considerations because "that's advanced stuff." They'd assume I already knew what an "ORM" was or why "middleware" matters.
+
+I kept hitting walls where things didn't work, and I had no idea why. I'd spend hours Googling error messages that made no sense to me. I'd follow a tutorial step by step only to discover it was written for an older version of the software, and now nothing worked.
+
+So when we wrote this guide, we made a deliberate choice: **we're going to explain everything.** Not because we think you're not smart enough to figure it out, but because you shouldn't have to. Building software is hard enough without also having to decode what the documentation assumes you already know.
+
+This guide is long because:
+
+- **We explain the "why" behind every decision**, not just the "what" and "how"
+- **We share the mistakes we made** so you can avoid them (we made plenty)
+- **We provide context** about how different pieces fit together
+- **We document alternatives** we considered and why we chose what we did
+- **We include troubleshooting** for the problems you'll actually encounter
+
+### Three Ways to Read This Guide
+
+Depending on where you are in your journey, you have three options:
+
+**Path 1: The Deep Dive (Recommended if you have time)**
+
+Read it from start to finish. Yes, it's long, but you'll finish with a complete understanding of not just how to build an API, but how APIs work, why they're structured the way they are, and how to troubleshoot problems when they inevitably occur. This is the path that will serve you best long-term because you'll truly understand what you're building.
+
+**Path 2: The Strategic Skim (If you need to move fast)**
+
+Read these sections first:
+1. **This introduction** (you're here now)
+2. **The Problem We All Face** – to understand if this guide is actually for you
+3. **What is "Vibe Coding"?** – to understand the methodology
+4. **The Technical Stack** – to understand what we're building with (skim the technical details, focus on the analogies)
+5. **The Complete Architecture Overview** – to see the big picture
+6. **Quick Start Guide** – to get up and running fast
+
+Then use the rest as a reference when you need it. Come back to specific sections when you encounter those issues in your own building process.
+
+**Path 3: The "I'm Stuck" Rescue (For when things go wrong)**
+
+Use the table of contents to jump directly to the section that matches your current problem:
+- Can't get the server running? → The Complete Installation section
+- Confused about authentication? → Understanding Authentication & Shield
+- Getting weird error messages? → Troubleshooting Common Issues
+- Not sure if your API is secure? → Security Deep Dive
+- Need to understand database structure? → Database Architecture
+- Ready to deploy but don't know where to start? → Day 5: Taking Your API Live
+- Getting "500 Internal Server Error" on production? → Day 5: Deployment Troubleshooting
+- Database connection failing on the server? → Day 5: Production Database Setup
+
+### What You'll Actually Build
+
+By following this guide, you'll create LaunchPad API—a production-ready authentication and user management system that includes:
+
+- User registration and login (with email verification)
+- Secure password handling (you won't even store passwords yourself)
+- API tokens for mobile app authentication
+- User groups and permissions (admins, regular users, etc.)
+- A complete testing framework
+- Security protections against common attacks
+- **Complete deployment to live hosting** (shared hosting, domain, SSL, database)
+- Monitoring, backups, and maintenance setup
+- Comprehensive documentation of every decision
+
+This isn't a toy project. It's the foundation that real businesses use. When you're done, you'll have something **live on the internet** that you could actually use for a real application—not just code running on your laptop.
+
+### The Mindset Shift That Makes This Work
+
+Here's the thing about learning to build software: it's not about memorizing commands or syntax. It's about understanding patterns and principles. Once you understand why something works, you can apply that understanding to new situations even when the specific details change.
+
+Think of this guide like learning to cook versus following a recipe. A recipe tells you "add 2 cups of flour and bake at 350°F for 30 minutes." Learning to cook means understanding why you're using flour (structure), why 350°F (Maillard reaction without burning), and why 30 minutes (setting proteins and starches).
+
+We're teaching you to cook, not just follow recipes. That's why we take the time to explain the reasoning. When you understand the reasoning, you can adapt when your situation is different. When you just follow recipes, you're lost the moment something doesn't match exactly.
+
+### A Map of What's Coming
+
+Here's what this guide covers, in order:
+
+**Part 1: Understanding the Landscape** (You're here)
+- The problem we're solving and why existing solutions fall short
+- What Vibe Coding actually means and why it works
+- Why we chose the specific tools we did (PHP, CodeIgniter 4, Shield)
+- The business case for building your API first (before your mobile app)
+
+**Part 2: Setting Up Your Environment**
+- Installing everything you need (PHP, Composer, database)
+- Configuring your development environment
+- Understanding the project structure
+- Setting up version control (Git)
+
+**Part 3: The Foundation—CodeIgniter 4**
+- How the framework actually works (routes, controllers, models)
+- The MVC pattern explained in human terms
+- Configuration files and what they control
+- Debugging and development tools
+
+**Part 4: Authentication with Shield**
+- Why authentication is so complex (and why it needs to be)
+- Understanding tokens, sessions, and security
+- Setting up user registration and login
+- Configuring permissions and user groups
+- Testing your authentication system
+
+**Part 5: Building Real Features**
+- Creating your first API endpoints
+- Handling data validation and error messages
+- Database design and migrations
+- File uploads and image handling
+- Rate limiting and performance
+
+**Part 6: Security, CORS & The Bridge to Production**
+- Security checklist and common vulnerabilities
+- CORS configuration (what it is and why you need it)
+- HTTPS and SSL certificates
+- Environment configuration for production
+
+**Part 7: Day 5—Taking Your API Live (Real Deployment Steps)**
+- Choosing shared hosting vs. VPS (and why shared hosting wins for startups)
+- Step-by-step: Preparing your app for production
+- Creating and migrating your production database
+- Uploading files via FTP/SFTP or Git deployment
+- Configuring your domain and DNS
+- Setting up free SSL certificates
+- Testing everything before launch
+- Monitoring, backups, and maintenance
+
+**Part 7: Documentation & Maintenance**
+- Documenting your API for other developers
+- Writing tests that actually catch bugs
+- Debugging production issues
+- Updating dependencies safely
+
+### The Decision to Document Everything
+
+One more thing before we dive in: you'll notice we document every decision we made. Why PHP and not Node.js? Why CodeIgniter and not Laravel? Why this authentication approach and not that one?
+
+We do this for three reasons:
+
+1. **So you understand** – Knowing why helps the knowledge stick
+2. **So you can decide differently** – Your situation might be different from ours. If you understand our reasoning, you can make an informed choice to do things differently
+3. **So you can explain to others** – When you inevitably work with other developers (or investors, or partners), you'll be able to articulate why your system is built the way it is
+
+We're not saying our choices are the only right choices. We're saying these are the choices we made, here's why we made them, and here's what we learned from them. Take what works for you, question what doesn't, and build something that fits your specific needs.
+
+### Final Pep Talk (Because You'll Need It)
+
+Building software is hard. There's no getting around that. But it's not impossible, and you don't need a computer science degree to do it. You need persistence, curiosity, and a willingness to sit with confusion until it makes sense.
+
+You're going to hit moments where nothing works and you have no idea why. That's normal. That's part of the process. The difference between people who successfully build software and people who give up isn't intelligence—it's the willingness to keep going when things get frustrating.
+
+This guide is here to reduce that frustration as much as possible, but it can't eliminate it entirely. Building things is inherently messy. Embrace the mess. Learn from it. And remember that every error message is just the computer trying to tell you something—it might be speaking in a foreign language right now, but by the end of this guide, you'll be fluent.
+
+Ready? Let's build something real.
 
 ---
 
@@ -45,6 +205,8 @@ Here's what LaunchPad API includes:
 We built this in days, not months. And we're going to show you exactly how, so you can do the same for your project.
 
 ## The Technical Stack: Explained Simply
+
+![Technical Stack Flow](docs-graphics/flow_horizontal_en.png)
 
 Before we dive into the process, let's talk about what we're actually building with. If you're completely new to this, these concepts might sound intimidating. They're not. Think of them as the ingredients in a recipe—you don't need to know organic chemistry to bake a cake.
 
@@ -390,6 +552,242 @@ For LaunchPad API, Laragon gave us a stable, fast, easy-to-use environment where
 
 If you're just starting out, our advice is simple: Don't try to be a system administrator and a developer at the same time. Let tools like Laragon handle the infrastructure so you can focus on building your product.
 
+## The Hidden Danger: Why Your `.env` File Is More Important Than You Think
+
+Let me tell you a story that keeps me up at night. A friend of mine—smart guy, successful entrepreneur—spent six months building his app. He had users, revenue, everything was going great. Then one morning, he woke up to find his entire database wiped clean. Years of customer data, gone. His business was effectively dead overnight.
+
+What happened? He had accidentally committed his database password to GitHub. It was sitting there in plain text for anyone to see. Someone found it, logged in, and deleted everything.
+
+This is the kind of mistake that seems impossible until it happens to you. And it's way more common than you might think. I've seen this story repeated dozens of times in developer forums, always with the same heartbreaking arc: someone didn't understand the importance of hiding their secrets, and they paid the price.
+
+### The Problem: Code That Travels
+
+Here's something that wasn't obvious to me when I started: **your code is going to end up in places you don't control.**
+
+Think about the lifecycle of your application:
+1. You write code on your laptop
+2. You save it to GitHub (or another code repository)
+3. Maybe you share access with a developer you hired
+4. You deploy it to a web server
+5. You might have team members downloading it to their machines
+6. Eventually, you might open-source parts of it
+
+At every single one of these steps, anyone with access can read every line of code. Every. Single. Line.
+
+Now imagine you've written something like this in your code:
+
+```php
+$databasePassword = "SuperSecretPassword123!";
+$apiKey = "sk_live_1234567890abcdef";
+```
+
+Those credentials are now everywhere your code is. Anyone who can see your code can log into your database. Anyone who can see your code can make API calls using your account (and rack up your bill). Anyone who can see your code can become you.
+
+This isn't theoretical. I've personally seen GitHub repositories with millions of views that accidentally included Stripe API keys, AWS credentials, and database passwords. Bots scan GitHub specifically for these patterns. The moment you commit a secret to a public repository, it's compromised. Even in private repositories, you're one disgruntled employee or hacked account away from disaster.
+
+### The Solution: Environment Variables
+
+So how do we solve this? We need a way to configure our application without putting secrets in the code itself.
+
+Enter the `.env` file.
+
+An environment file is a special file that sits in your project folder but **never gets committed to your code repository**. It contains configuration values that are specific to the environment your code is running in—your laptop, your staging server, your production server.
+
+Think of it like this: Your code is a recipe book. The `.env` file is your kitchen's pantry. The recipe (code) says "add two eggs," but it doesn't specify which eggs—you use whatever eggs are in your pantry (environment) at that moment. Different kitchens (environments) have different ingredients, but the recipe stays the same.
+
+Here's what a typical `.env` file looks like:
+
+```bash
+# Database Configuration
+database.default.hostname = localhost
+database.default.database = my_app_db
+database.default.username = app_user
+database.default.password = SuperSecretPassword123!
+database.default.DBDriver = MySQLi
+
+# API Keys
+STRIPE_SECRET_KEY = sk_live_1234567890abcdef
+STRIPE_PUBLISHABLE_KEY = pk_live_0987654321fedcba
+
+# Application Settings
+app.baseURL = 'http://localhost:8080'
+CI_ENVIRONMENT = development
+```
+
+Then in your code, instead of writing the actual password, you reference the environment variable:
+
+```php
+// Instead of this (BAD):
+$password = "SuperSecretPassword123!";
+
+// You do this (GOOD):
+$password = getenv('database.default.password');
+```
+
+Now your code doesn't contain any secrets. It just knows how to look them up when it runs.
+
+### Why This Matters: A Real-World Analogy
+
+Imagine you're building a house. You wouldn't write your home address and the combination to your safe directly onto the blueprints, then hand copies of those blueprints to every contractor, inspector, and delivery person who works on your house. That's insane, right? Anyone with the blueprint could find your house and open your safe.
+
+But that's exactly what you're doing when you hardcode secrets into your application.
+
+Instead, the blueprint (your code) describes how to build the house, and each person gets only the information they need for their specific job. The electrician gets electrical specs, not the safe combination. The plumber gets pipe diagrams, not your WiFi password.
+
+The `.env` file is like a secure document that stays in the house after construction. It contains all the sensitive information that the house needs to function—alarm codes, WiFi passwords, safe combinations—but it's never included in the plans that get passed around.
+
+### The `.env` vs `.env.example` Pattern
+
+Here's the practical workflow that professional developers use:
+
+**1. Create a `.env.example` file**
+This file contains all the configuration keys your application needs, but with placeholder values instead of real secrets:
+
+```bash
+# Copy this file to .env and fill in your real values
+database.default.hostname = localhost
+database.default.database = your_database_name
+database.default.username = your_username
+database.default.password = YOUR_PASSWORD_HERE
+```
+
+**2. Add `.env` to your `.gitignore` file**
+This tells Git to never track or commit your `.env` file. It stays on your local machine only.
+
+**3. Copy `.env.example` to `.env` on each environment**
+When you set up a new developer's laptop, or deploy to a server, you copy the example file and fill in the real values.
+
+**4. Never commit the real `.env` file**
+Ever. Not even "just this once." Not even "just for testing." Never.
+
+### What Goes in Your `.env` File?
+
+Over time, you'll accumulate various secrets and configuration values. Here's what typically belongs in your environment file:
+
+**Database Credentials**
+- Hostname
+- Database name
+- Username
+- Password
+- Port number
+
+**API Keys**
+- Payment processors (Stripe, PayPal)
+- Email services (SendGrid, Mailgun)
+- Maps and geolocation (Google Maps, Mapbox)
+- SMS services (Twilio)
+- Cloud storage (AWS S3, DigitalOcean Spaces)
+- Any third-party service you integrate with
+
+**Application Secrets**
+- Encryption keys
+- Session secrets
+- JWT signing keys
+- CSRF tokens
+
+**Environment-Specific Settings**
+- Base URL (localhost vs production domain)
+- Debug mode (on in development, off in production)
+- Log levels
+- Email settings (use real emails in production, fake ones in development)
+
+### The Nightmare Scenarios We Avoided
+
+I want to drive home how serious this is by sharing a few more stories from the real world:
+
+**The $50,000 AWS Bill**
+A startup accidentally committed their AWS access keys to a public GitHub repository. Within 24 hours, cryptocurrency miners had found the keys, spun up hundreds of expensive virtual machines, and mined Bitcoin at the startup's expense. The bill was $50,000 before AWS fraud detection caught it.
+
+**The Database Ransom**
+A developer included database credentials in code that was later open-sourced. Six months later, someone accessed the production database and held it ransom for 5 Bitcoin. The company had to pay because they didn't have proper backups.
+
+**The GDPR Violation**
+An EU-based company accidentally exposed customer data because their API keys were visible in their code. They faced massive fines under GDPR regulations and had to notify thousands of customers about the breach.
+
+These aren't horror stories to scare you unnecessarily. They're cautionary tales that happen regularly because developers underestimate the importance of keeping secrets out of code.
+
+### Our `.env` Strategy for LaunchPad API
+
+In our project, we take this seriously from day one. Here's our approach:
+
+**Step 1: Create the Example File**
+We created an `.env.example` file that documents every configuration option our application needs. This serves as both documentation and a template.
+
+**Step 2: Protect the Real File**
+We added `.env` to our `.gitignore` immediately, before writing any real code. This ensures we never accidentally commit it.
+
+**Step 3: Document the Setup Process**
+In our README and documentation, we explicitly tell anyone setting up the project: "Copy `.env.example` to `.env` and fill in your values."
+
+**Step 4: Use Different Values for Different Environments**
+- Development: Uses local database, debug mode enabled, test API keys
+- Staging: Uses staging database, debug mode enabled, real API keys
+- Production: Uses production database, debug mode disabled, real API keys, extra security settings
+
+**Step 5: Never Log or Display Environment Variables**
+In our code, we're careful never to accidentally log or output these values. If we need to debug database connection issues, we log that the connection failed, not what password we tried to use.
+
+### Common Mistakes and How to Avoid Them
+
+Even experienced developers slip up sometimes. Here are the most common mistakes and how to prevent them:
+
+**Mistake 1: "I'll add it to gitignore later"**
+Problem: You create the `.env` file, write some code, commit everything, then remember to add it to `.gitignore`. Too late—it's already in your history.
+
+Solution: Add `.env` to `.gitignore` immediately when you create the project, before creating the actual `.env` file.
+
+**Mistake 2: "I removed it from the repo, so I'm safe"**
+Problem: You committed secrets, realized your mistake, and deleted the file. But Git keeps history. Anyone can still see the old commits with your secrets.
+
+Solution: Once committed, you must rotate (change) all the exposed credentials. Deleting the file isn't enough.
+
+**Mistake 3: "I'm just testing, I'll use placeholder values"**
+Problem: You use real credentials in development "just to test," intending to clean them up later. You forget.
+
+Solution: Never use production credentials in development. Create separate test accounts with limited access.
+
+**Mistake 4: "My repo is private, so I'm safe"**
+Problem: Private repos can be accessed by anyone you give permissions to. Team members leave. Accounts get hacked. "Private" doesn't mean "secure."
+
+Solution: Treat private repos the same as public ones. Keep secrets out.
+
+**Mistake 5: "I'll encrypt the secrets in the code"**
+Problem: You're still storing secrets in code, just encrypted. Anyone with the code can decrypt them.
+
+Solution: Don't store secrets in code at all, encrypted or not. Use environment variables.
+
+### The Decision We Made
+
+When we started LaunchPad API, we made a non-negotiable rule: **No secrets in code. Ever.**
+
+This wasn't just about following best practices. It was about building a foundation we could trust. When you're an entrepreneur, you have enough to worry about—marketing, sales, customer support, funding. The last thing you need is a security breach that destroys everything you've built.
+
+By using environment variables from day one, we:
+- Can share our code freely without worrying about exposing credentials
+- Can deploy to different environments without changing code
+- Can rotate credentials easily when needed
+- Can onboard new developers without giving them access to production systems
+- Can sleep at night knowing our secrets are actually secret
+
+**Trade-offs to consider:**
+- **Pros**: Security, flexibility, easier deployment, better team collaboration
+- **Cons**: Slightly more complex setup, need to manage environment files on each server
+
+This is one decision that's completely reversible (you can always change your approach later), but why risk it? Start secure, stay secure.
+
+### Getting Started with Your `.env` File
+
+If you're following along with this guide, here's exactly what to do:
+
+1. **Create `.env.example`** in your project root
+2. **Add all the configuration keys** your app needs, with placeholder values
+3. **Add `.env` to `.gitignore`** before creating the real file
+4. **Copy `.env.example` to `.env`** and fill in your real values
+5. **Never commit the `.env` file`**—check twice before every commit
+6. **Back up your `.env` file securely**—maybe in a password manager
+
+Remember: Your `.env` file is the key to your kingdom. Guard it accordingly.
+
 ## Why PHP APIs Make Sense for Entrepreneurs (The Real Talk)
 
 Let's address the elephant in the room: You've probably heard that "real" developers use Node.js, Python, or Ruby. You might be wondering if you're making a mistake choosing PHP.
@@ -491,6 +889,8 @@ If you get to the point where PHP is your bottleneck, congratulations—you have
 Premature optimization is the enemy of progress. Start with what works, ship fast, and optimize when you have real users and real data showing where the problems are.
 
 ## Our 3-Step "Vibe Coding" Methodology
+
+![Vibe Coding Process](docs-graphics/vibe_horizontal_en.png)
 
 Now let's get into the actual process. This is how we went from "we need an API" to having a production-ready foundation in days.
 
@@ -698,6 +1098,1224 @@ That `['filter' => 'tokens']` tells CodeIgniter: "Hey, before letting anyone acc
 Shield handles everything else—checking the token, verifying it's not expired, loading the user, making them available in our controller.
 
 **This is the power of Vibe Coding with good libraries.** We wrote maybe 20 lines of custom code and got a fully functional, secure API endpoint.
+
+## The Bridge Between Your API and the World: Understanding CORS
+
+So you've built your API. You've got authentication working. Your endpoints are responding beautifully when you test them from your own computer. Everything seems perfect.
+
+Then you try to connect your mobile app—or your friend's web application—and suddenly nothing works. The browser shows scary red error messages. Your app throws mysterious "Network Error" exceptions. You start questioning everything you just built.
+
+Welcome to one of the most frustrating experiences in API development. We've been there. Let us save you the three days of confusion we went through.
+
+### The Scenario That Breaks Everyone's Heart
+
+Picture this: You've just finished your API. You're proud of it. You open up your web browser, navigate to `http://localhost:8080/api/users`, and you see beautiful JSON data flowing back. "Perfect!" you think.
+
+You open your mobile app code—or maybe you have a simple HTML file with some JavaScript—and you write what seems like the most straightforward code in the world:
+
+```javascript
+fetch('http://localhost:8080/api/users')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+It should work, right? You're asking the exact same URL, expecting the exact same data. But instead of your beautiful JSON, you get an error that looks something like:
+
+> "Access to fetch at 'http://localhost:8080/api/users' from origin 'http://localhost:3000' has been blocked by CORS policy."
+
+Or maybe your mobile app just silently fails, or shows "Network Error" without any helpful details.
+
+What just happened? Your API is working perfectly. Your code looks correct. Yet the two refuse to talk to each other. It's maddening.
+
+### The Security Rule Nobody Told You About
+
+Here's what's actually happening—and it's not a bug, it's a security feature that was added to web browsers years ago to protect you and your users.
+
+Imagine you're logged into your bank's website in one browser tab. Then you visit another website—let's say it's a seemingly innocent news site. Without certain protections, that news site could include JavaScript code that makes requests to your bank's website using your existing login session. It could potentially transfer money, change your address, or do all sorts of malicious things using your authenticated session.
+
+That would be catastrophic.
+
+So web browsers implemented a rule called the **Same-Origin Policy**. This rule says: "Code running on one website can only make requests to that same website." If you're on `myapp.com`, you can talk to `myapp.com/api/users` all day long. But if you try to talk to `bank.com` from `myapp.com`, the browser steps in and says "Nope, not allowed."
+
+This rule has saved countless people from cross-site scripting attacks and session hijacking. It's genuinely important.
+
+But here's the problem: your API and your frontend are technically different "origins" (different ports, or different domains), so the browser treats them as different websites and blocks the communication.
+
+### Enter CORS: The Permission Slip for Cross-Origin Requests
+
+CORS stands for **Cross-Origin Resource Sharing**. Think of it as a formal permission system. Your API can tell browsers: "It's okay if these specific websites talk to me. I trust them."
+
+Without CORS configuration, your API is like a house with all the doors locked. The security is great, but nobody can visit. With CORS, you can unlock specific doors for specific visitors while keeping the rest of the house secure.
+
+The way it works is actually quite elegant. When your JavaScript code tries to make a request to a different origin, the browser first sends what's called a "preflight request." This is basically the browser asking your API: "Hey, this website at origin X wants to talk to you. Is that allowed?"
+
+Your API responds with CORS headers that say things like:
+- "Yes, origin X is allowed"
+- "They can use these HTTP methods: GET, POST, PUT, DELETE"
+- "They can send these headers: Content-Type, Authorization"
+- "They can include credentials like cookies if needed"
+
+Only after receiving this permission does the browser actually send the real request with your data.
+
+### Why Mobile Apps Face This Too
+
+You might be thinking: "But I'm building a mobile app, not a website. Why do I care about browser security rules?"
+
+Great question. Modern mobile apps are often built using web technologies—React Native, Flutter, Ionic, or even just embedded web views. These frameworks use the same underlying browser engines to make HTTP requests. So even though your app is running on a phone, not in a web browser window, the same CORS rules apply because the networking layer is browser-based.
+
+Additionally, during development, you're probably testing your mobile app in a browser anyway (using tools like browser-based simulators). And when you eventually build a web dashboard for your users, you'll definitely need CORS configured.
+
+The bottom line: CORS is non-negotiable for modern API development. You need to configure it properly, and you need to understand what you're doing so you don't accidentally open security holes.
+
+### How We Configure CORS in CodeIgniter 4
+
+CodeIgniter 4 actually makes this relatively painless once you know what to do. The framework includes a CORS module that's built-in but needs to be enabled and configured.
+
+Here's the decision process we went through:
+
+**First decision: Which origins should we allow?**
+
+In production, you want to be very specific. If your frontend runs on `https://myapp.com`, you should only allow that origin. Not `http://myapp.com` (without HTTPS), not `https://www.myapp.com` (with www), not wildcards that would let any website talk to your API.
+
+For development, we needed to allow multiple origins because:
+- Our mobile app running on a simulator might come from `http://localhost:8100`
+- Our web frontend might run on `http://localhost:3000`
+- Our API testing tools (like Postman or Insomnia) might not send an origin at all
+
+**Second decision: Which HTTP methods should we support?**
+
+For a REST API, you typically need:
+- `GET` for reading data
+- `POST` for creating data
+- `PUT` or `PATCH` for updating data
+- `DELETE` for removing data
+- `OPTIONS` for the preflight requests (browsers send this automatically)
+
+**Third decision: Which headers should we allow?**
+
+At minimum, you need:
+- `Content-Type` (so we can send JSON)
+- `Authorization` (so we can send bearer tokens)
+- `X-Requested-With` (used by many AJAX libraries)
+
+**Fourth decision: Should we allow credentials?**
+
+If you're using cookies or session-based authentication, you need to allow credentials. For token-based APIs (which is what Shield uses), you technically don't need cookies, but allowing credentials doesn't hurt and makes your API more flexible for future use cases.
+
+### The Configuration That Actually Works
+
+After experimenting (and failing multiple times), here's the configuration that worked for us. We created a CORS configuration file in `app/Config/Cors.php`:
+
+```php
+<?php
+
+namespace Config;
+
+use CodeIgniter\Config\BaseConfig;
+
+class Cors extends BaseConfig
+{
+    // During development, we allow multiple localhost ports
+    // In production, this should be your exact domain
+    public array $allowedOrigins = [
+        'http://localhost:3000',     // React/Vue dev server
+        'http://localhost:8100',     // Ionic/Cordova apps
+        'http://localhost:8080',     // Other local testing
+        'http://localhost',          // General local development
+    ];
+    
+    // Allow all origins with a wildcard (NOT for production!)
+    // Only use this for rapid prototyping, never in production
+    public bool $allowAnyOrigin = false;
+    
+    // HTTP methods our API supports
+    public array $allowedMethods = [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        'OPTIONS',
+        'PATCH'
+    ];
+    
+    // Headers the client is allowed to send
+    public array $allowedHeaders = [
+        'Content-Type',
+        'Authorization',
+        'X-Requested-With',
+        'Accept',
+        'Origin'
+    ];
+    
+    // Headers the client is allowed to read from the response
+    public array $exposedHeaders = [];
+    
+    // Whether to allow cookies/credentials
+    public bool $allowCredentials = true;
+    
+    // How long browsers can cache the preflight response (in seconds)
+    // 7200 = 2 hours, reduces preflight requests
+    public int $maxAge = 7200;
+}
+```
+
+Then we enabled the CORS filter in `app/Config/Filters.php`:
+
+```php
+public array $aliases = [
+    'csrf'     => CSRF::class,
+    'toolbar'  => DebugToolbar::class,
+    'honeypot' => Honeypot::class,
+    'cors'     => \CodeIgniter\Filters\Cors::class, // Add this line
+];
+
+public array $globals = [
+    'before' => [
+        'cors', // Apply CORS to all routes
+        // ... other filters
+    ],
+    'after' => [
+        // ...
+    ],
+];
+```
+
+### The Moment of Truth: Testing Your CORS Setup
+
+After configuring CORS, you need to test it properly. Here's what we learned:
+
+**Testing from a browser:**
+Open your browser's developer console and try making a fetch request to your API from a different origin. You should see the request succeed without CORS errors.
+
+**Testing from curl:**
+```bash
+# Test preflight request
+curl -X OPTIONS -H "Origin: http://localhost:3000" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: Content-Type" \
+  -I http://localhost:8080/api/users
+
+# You should see headers like:
+# Access-Control-Allow-Origin: http://localhost:3000
+# Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH
+```
+
+**Common mistakes we made:**
+1. Forgetting to restart the server after changing configuration
+2. Using `*` (wildcard) for origins in production (security risk!)
+3. Not including the `OPTIONS` method in allowed methods
+4. Forgetting to allow the `Authorization` header (breaks token auth)
+5. Testing from `file://` URLs (browsers treat these differently)
+
+### The Production Checklist
+
+When you're ready to deploy to production, update your CORS configuration:
+
+```php
+public array $allowedOrigins = [
+    'https://myapp.com',      // Your production domain
+    'https://www.myapp.com',  // Include www variant
+    'https://admin.myapp.com', // If you have a separate admin panel
+];
+
+public bool $allowAnyOrigin = false; // Never true in production!
+```
+
+**Why be so restrictive?**
+
+Imagine you allow any origin (`*`) in production. Now any website on the internet can make requests to your API from their users' browsers. They could:
+- Harvest data from your public endpoints
+- Attempt to brute force authentication using your login endpoint
+- Flood your API with requests from thousands of users
+
+By restricting to specific origins, you ensure that only your legitimate applications can communicate with your API.
+
+### Why This Matters More Than You Think
+
+CORS errors are often the first real "wall" that beginner API developers hit. You've built something that works perfectly in isolation, but the moment you try to integrate it with a real frontend, everything breaks. It's demoralizing.
+
+But here's what we've learned: CORS isn't just a technical hurdle to overcome. It's a fundamental part of web security architecture. Understanding CORS means understanding how web security works. It means thinking about which applications should have access to your data and which shouldn't.
+
+When you configure CORS properly, you're not just fixing an error—you're making a conscious security decision about who can talk to your API and how. That's the difference between someone who "made it work" and someone who understands what they're building.
+
+For LaunchPad API, CORS configuration was the bridge that connected our backend to the outside world. It transformed our API from a lonely island into a service that could power web apps, mobile apps, and third-party integrations. And once we understood it, it wasn't scary anymore—it was just another security layer that we controlled.
+
+## Day 5: Taking Your API Live—Real Deployment Steps That Actually Work
+
+So you've built your API. You've tested it locally. Everything works beautifully on your computer. Now comes the moment of truth: getting it onto the internet where real people can use it.
+
+This is where a lot of guides leave you hanging. They say "deploy to production" like it's a single button you push, then move on to the next topic. But here's the reality: deployment is a series of decisions and steps that can make or break your project's launch. Do it wrong, and you'll spend your first week fighting configuration issues instead of celebrating your launch.
+
+We learned this the hard way. Our first deployment attempt was... let's call it "educational." We broke things. We had to roll back. We stayed up until 3 AM wondering why something that worked perfectly on our laptop refused to work on the server. But we got through it, and now we're going to save you that pain.
+
+### The Mindset Shift: From "It Works on My Machine" to "It Works Everywhere"
+
+Before we dive into the specific steps, let's talk about the fundamental challenge of deployment: your production environment is different from your development environment. Different server software, different file paths, different security rules, different everything.
+
+Think of it like this: you've been practicing a song on your acoustic guitar in your bedroom. Now you're performing it on stage with a full band, professional sound system, and a live audience. The song is the same, but everything around it has changed.
+
+Your job during deployment isn't just to move files from one place to another. It's to adapt your application to its new home while keeping the core functionality intact. This means understanding what needs to change (configuration) and what must stay exactly the same (your code logic).
+
+### Why We Chose Shared Hosting (And Why You Probably Should Too)
+
+Remember back when we talked about PHP's advantages? Here's where it pays off big time. While developers using Node.js or Python are struggling with VPS configuration, server management, and deployment pipelines, you're going to upload some files and be done.
+
+**But let's be clear about what shared hosting actually means:**
+
+Shared hosting is like renting an apartment in a large building. You get your own space (disk space, database, email accounts), but you're sharing the building's infrastructure (the server hardware, internet connection, security systems) with other tenants. The building management (your hosting company) takes care of maintenance, security updates, and keeping things running.
+
+**Here's why this is perfect for LaunchPad API:**
+
+1. **Cost**: $3-10 per month versus $20-50+ for a VPS
+2. **Simplicity**: No server administration required
+3. **Support**: Most shared hosts have 24/7 support for basic issues
+4. **Features**: You usually get email, databases, SSL certificates, and more included
+5. **Scalability**: When you outgrow shared hosting, you'll have revenue to afford better options
+
+**The trade-offs:**
+- You don't have root access (can't install arbitrary software)
+- Performance can vary based on what other sites on the server are doing
+- You're limited to what the host provides (PHP versions, extensions, etc.)
+
+For a new API with zero users, these trade-offs are completely acceptable. You're not going to hit performance limits with your first hundred users. And by the time you do, you'll have the revenue and knowledge to upgrade.
+
+### Step 1: Choosing Your Hosting Provider (The Decision That Matters More Than You Think)
+
+There are hundreds of shared hosting companies. Here's how to choose without going crazy:
+
+**What you actually need:**
+1. PHP 8.1 or higher (8.2+ preferred)
+2. MySQL or MariaDB (both work fine)
+3. cPanel or similar control panel (makes management easier)
+4. Free SSL certificate (essential for HTTPS)
+5. FTP or SFTP access (to upload files)
+6. phpMyAdmin (to manage your database visually)
+7. Reasonable support (24/7 chat is ideal)
+
+**Popular options that work well:**
+- **Namecheap**: Cheap, reliable, good for beginners
+- **Hostinger**: Good performance, affordable, modern interface
+- **Bluehost**: Popular, WordPress-friendly (which means PHP-friendly)
+- **SiteGround**: Excellent support, slightly pricier but worth it for the peace of mind
+- **A2 Hosting**: Developer-friendly, good performance
+
+**What we chose and why:**
+We went with Namecheap for our first deployment. Not because it's the best in every category, but because it checked all our boxes at a price point ($3.88/month) that made it easy to say yes. Their cPanel interface is standard, their support is decent, and they don't nickel-and-dime you for basic features.
+
+**The decision process:**
+- We looked at 10+ hosts
+- Eliminated any without PHP 8.1+ support
+- Eliminated any charging extra for SSL certificates
+- Chose the cheapest option that met our technical requirements
+- Planned to upgrade later if needed
+
+**Reversible?** Absolutely. If your host disappoints, you can move your entire site in a few hours once you know the process. Don't overthink this decision.
+
+### Step 2: Preparing Your Application for the Real World
+
+Before uploading anything, you need to make some changes to your code. These aren't optional—they're the difference between a working API and a broken one.
+
+**The Environment Configuration Dance:**
+
+Remember your `.env` file? The one with all your secrets? That file lives only on your local machine. Never upload it. But your production server needs those same configuration values—just with different values (production database, production API keys, etc.).
+
+Here's the process:
+
+1. **Create a production `.env` file locally** (don't commit this either):
+   ```bash
+   # .env.production (this is just a template, rename to .env on the server)
+   CI_ENVIRONMENT = production
+   app.baseURL = 'https://yourdomain.com'
+   
+   # Production database (you'll get these from your hosting control panel)
+   database.default.hostname = localhost
+   database.default.database = yourhosting_username_dbname
+   database.default.username = yourhosting_username
+   database.default.password = your_production_password
+   database.default.DBDriver = MySQLi
+   ```
+
+2. **Update your production settings:**
+   ```bash
+   # In .env.production
+   CI_ENVIRONMENT = production
+   app.baseURL = 'https://yourdomain.com'
+   
+   # Turn off debugging in production
+   CI_DEBUG = false
+   
+   # Configure error logging
+   logger.threshold = 4
+   ```
+
+3. **Set proper file permissions locally** (so they transfer correctly):
+   Your `writable/` folder needs to be writable by the web server. This is handled differently on different hosts, but generally:
+   - Folders: 755 (rwxr-xr-x)
+   - Files: 644 (rw-r--r--)
+   - `writable/` folder: 775 (rwxrwxr-x)
+
+**Why this matters:**
+- Production mode disables debug output (security)
+- Production database credentials are different (security)
+- Proper permissions prevent "permission denied" errors
+- Your base URL affects how links and redirects work
+
+**Common mistake to avoid:**
+Don't just copy your local `.env` file to production. Your local database is named something like `ci_api_db`. Your production database will be named something like `namecheap_username_cidb` with a different username and password. Using local credentials on production will fail.
+
+### Step 3: Setting Up Your Production Database
+
+This is the part that intimidates people, but it's actually straightforward once you see it done.
+
+**Creating the Database:**
+
+1. **Log into your hosting control panel** (cPanel, Plesk, or whatever your host uses)
+2. **Find "MySQL Databases" or "Database Wizard"**
+3. **Create a new database**:
+   - Name it something descriptive (yourapp_db)
+   - The host usually prefixes it with your username (username_yourapp_db)
+4. **Create a database user**:
+   - Choose a strong password (use a generator)
+   - Save this password somewhere secure
+5. **Add the user to the database** with "All Privileges"
+
+**Moving Your Local Data to Production:**
+
+You have two options here, and we recommend the second one for beginners:
+
+**Option 1: Export and Import (More Control):**
+1. Export your local database (using phpMyAdmin, TablePlus, or command line):
+   ```bash
+   # If you have MySQL locally
+   mysqldump -u root -p ci_api_db > backup.sql
+   ```
+2. Open your hosting's phpMyAdmin
+3. Select your production database
+4. Click "Import" and upload your backup.sql file
+
+**Option 2: Run Migrations Fresh (Cleaner):**
+1. Don't export data from local development
+2. Upload your code (next step)
+3. SSH into your server or use the hosting's terminal
+4. Run migrations fresh on production:
+   ```bash
+   cd /path/to/your/app
+   php spark migrate --all
+   ```
+
+**Why we prefer Option 2:**
+- Cleaner database structure
+- No test data polluting production
+- Ensures migrations actually work
+- Easier to reproduce if you need to set up staging later
+
+**The Only Data You Might Want to Migrate:**
+If you created admin users or essential configuration data locally, export just those specific tables or rows. Don't bring over test users, dummy data, or your personal testing sessions.
+
+### Step 4: Uploading Your Files (The Moment of Truth)
+
+Now you're ready to move your code to the server. You have a few options here.
+
+**Understanding Your Hosting's File Structure:**
+
+Shared hosts typically have a structure like this:
+```
+/home/username/           <- Your home directory (you start here in FTP)
+├── public_html/          <- Web root (files here are publicly accessible)
+├── mail/                 <- Email storage
+├── logs/                 <- Server logs
+└── .cpanel/              <- Control panel stuff
+```
+
+The `public_html/` folder is crucial. Files in here are accessible to anyone on the internet. Files outside of it (like your `.env` file, if you put it in the right place) are protected.
+
+**Upload Method 1: FTP/SFTP (Easiest for Beginners):**
+
+1. **Download an FTP client** (FileZilla is free and works great)
+2. **Get your FTP credentials from your hosting control panel**
+3. **Connect to your server**
+4. **Navigate to the public_html folder**
+5. **Upload your files**
+
+**The CodeIgniter 4 Way:**
+CI4 has a specific structure. Your `public/` folder needs to map to the host's `public_html/`. Here's how:
+
+1. Upload everything EXCEPT the `public/` folder to `/home/username/ci_api/`
+2. Upload the CONTENTS of your `public/` folder to `/home/username/public_html/`
+3. Edit `/home/username/public_html/index.php` to point to the right place:
+   ```php
+   // Change this line
+   $pathsPath = FCPATH . '../app/Config/Paths.php';
+   // To this (adjust path as needed)
+   $pathsPath = '/home/username/ci_api/app/Config/Paths.php';
+   ```
+
+**Upload Method 2: Git Deployment (If Your Host Supports It):**
+
+Some hosts let you deploy via Git. This is cleaner but requires SSH access:
+```bash
+# On your server
+ git clone https://github.com/yourusername/yourrepo.git
+ cd yourrepo
+ composer install --no-dev
+ php spark migrate
+```
+
+**Upload Method 3: File Manager (No Software Required):**
+
+Most hosting control panels have a web-based file manager. You can:
+1. Zip your project locally
+2. Upload the zip via the file manager
+3. Extract it on the server
+4. Move files to the right places
+
+**What we did:**
+We used FTP with FileZilla for our first deployment. It's visual, you can see what's happening, and if something fails, you know exactly where. As we got more comfortable, we switched to Git deployment for updates.
+
+**Pro tip:** Upload takes a while. Get it started, make some coffee, and come back. Don't sit there watching progress bars.
+
+### Step 5: Configuring Your Domain (Making It Official)
+
+If you bought your domain from the same company as your hosting, this is automatic. If not, you need to connect them.
+
+**How Domain Names Actually Work (The Simple Version):**
+
+When someone types `yourdomain.com` into their browser:
+1. Their computer asks a DNS server "What's the IP address for yourdomain.com?"
+2. The DNS server looks it up and returns something like `192.168.1.100`
+3. Their browser connects to that IP address
+4. Your hosting server says "Hi! You want yourdomain.com? Here's the website."
+
+**Setting Up Your Nameservers:**
+
+1. **Find your hosting's nameservers** (usually in your welcome email or control panel)
+   - They look like: `ns1.yourhost.com` and `ns2.yourhost.com`
+2. **Log into wherever you bought your domain** (Namecheap, GoDaddy, Google Domains, etc.)
+3. **Find the "Nameservers" or "DNS" section**
+4. **Change the nameservers to your host's**
+5. **Wait** (this can take anywhere from 15 minutes to 48 hours to propagate)
+
+**Why does it take so long?**
+DNS is like a giant distributed phone book. When you change nameservers, you're telling the phone book operators to update their records. Some check for updates frequently (minutes), others less frequently (hours or days). Be patient.
+
+**Testing if it's working:**
+```bash
+# Use dig or nslookup to check
+ dig yourdomain.com
+ 
+# Or just visit it in a browser
+# If you see your site, it's working!
+```
+
+**The "It's Been 2 Hours and Nothing Works" Checklist:**
+1. Clear your browser cache (Ctrl+Shift+R or Cmd+Shift+R)
+2. Try a different browser
+3. Try accessing from your phone (different network)
+4. Use a tool like https://dnschecker.org/ to see if it's propagated globally
+5. Check that you didn't misspell the nameservers
+
+### Step 6: Setting Up SSL (The Lock Icon That Makes You Look Professional)
+
+HTTPS isn't optional anymore. Browsers warn users about "insecure" sites. Google ranks HTTPS sites higher. You need SSL.
+
+**The Good News:**
+Most shared hosts offer free SSL certificates through Let's Encrypt. Setup is usually:
+
+1. **Log into your hosting control panel**
+2. **Find "SSL/TLS" or "Security" or "Let's Encrypt"**
+3. **Click "Install" or "Enable"**
+4. **Select your domain**
+5. **Wait 5-10 minutes**
+
+**What happens behind the scenes:**
+The hosting company requests a certificate from Let's Encrypt (a nonprofit that provides free SSL). Let's Encrypt verifies you control the domain by checking your nameservers. Once verified, they issue the certificate. Your host installs it automatically.
+
+**After SSL is active:**
+1. Update your `.env` file:
+   ```bash
+   app.baseURL = 'https://yourdomain.com'
+   ```
+2. Test by visiting `https://yourdomain.com` (note the https://)
+3. You should see a lock icon in your browser
+
+**Common SSL Issues:**
+- **Mixed content warnings**: You're loading HTTP resources on an HTTPS page. Update all your URLs to use https://
+- **Certificate not trusted**: The certificate is still propagating. Wait an hour and try again.
+- **Domain mismatch**: The certificate is for www.yourdomain.com but you're accessing yourdomain.com (or vice versa). Most hosts fix this automatically, but sometimes you need to specify both.
+
+### Step 7: The Final Tests (Before You Tell Anyone)
+
+Don't announce your launch yet. Test everything first.
+
+**The Smoke Test Checklist:**
+
+1. **Homepage loads**: Visit `https://yourdomain.com`—do you see something? Anything?
+2. **API endpoints work**: Test a simple GET endpoint
+   ```bash
+   curl https://yourdomain.com/api/users
+   ```
+3. **Authentication works**: Try to register a new user
+4. **Database is connected**: Can you create/read data?
+5. **Error handling works**: Try accessing a non-existent endpoint. Do you get a proper 404 or a server error?
+6. **HTTPS is forced**: Try visiting `http://yourdomain.com` (without the s). Does it redirect to https?
+
+**Common First Deployment Issues:**
+
+**"500 Internal Server Error"**
+- Check your `.env` file exists and has correct values
+- Check file permissions (especially `writable/` folder)
+- Check your host's error logs (in cPanel)
+- Enable CI4's error logging temporarily to see the real error:
+  ```bash
+  CI_DEBUG = true  # Only temporarily!
+  ```
+
+**"Database connection failed"**
+- Wrong database credentials in `.env`
+- Database user doesn't have proper privileges
+- Database doesn't exist (did you create it in cPanel?)
+- Wrong hostname (some hosts use something other than "localhost")
+
+**"404 Not Found on all routes"**
+- Your `.htaccess` file isn't uploaded or is wrong
+- mod_rewrite isn't enabled (ask your host)
+- Your `public/` folder files are in the wrong place
+
+**"CORS errors"**
+- Update your `Cors.php` config to allow your production domain
+- Restart your server (some configs cache)
+
+### Step 8: Monitoring and Maintenance (Keeping It Alive)
+
+Your API is live! But the work isn't done. You need to keep an eye on it.
+
+**What to Monitor:**
+
+1. **Uptime**: Is the server responding? (Most hosts provide this)
+2. **Error logs**: Are there errors you didn't catch in testing?
+3. **Performance**: Is it slow? (Use tools like GTmetrix or Pingdom)
+4. **Security**: Any suspicious activity?
+
+**Where to Find Logs:**
+
+Most shared hosts provide:
+- **Error logs**: cPanel → Metrics → Errors
+- **Access logs**: cPanel → Metrics → Raw Access
+- **Application logs**: In your `writable/logs/` folder
+
+**Setting Up Basic Monitoring:**
+
+Free tools that work great:
+- **UptimeRobot**: Checks if your site is up every 5 minutes. Free plan covers 50 monitors.
+- **Google Search Console**: Tells you about indexing issues and security problems
+- **Your hosting's built-in stats**: Usually found in cPanel
+
+**Backup Strategy (Don't Skip This):**
+
+Most hosts do automated backups, but you should too:
+
+1. **Database backups**: Export your database weekly
+2. **File backups**: Download your entire site monthly
+3. **Version control**: Keep your code in Git (you should already be doing this)
+
+**Setting Up Automated Backups:**
+Many hosts offer automated backup services (sometimes paid). If you want to do it yourself:
+
+```bash
+# Add this to your local machine as a weekly cron job
+ mysqldump -h yourhost.com -u username -p'password' database_name > backup_$(date +%Y%m%d).sql
+```
+
+### The Launch Day Itself
+
+You've done the work. Now it's time to flip the switch.
+
+**The Soft Launch Approach:**
+Instead of announcing to the world immediately, try this:
+
+1. **Deploy a day early**: Give yourself time to fix issues
+2. **Test with a small group**: Ask 2-3 friends to try it
+3. **Monitor for 24 hours**: Make sure it's stable
+4. **Then announce**: Share with your actual audience
+
+**The Launch Day Checklist:**
+- [ ] Site loads correctly
+- [ ] SSL certificate is active
+- [ ] API endpoints respond
+- [ ] Authentication works
+- [ ] Mobile app (if applicable) connects successfully
+- [ ] Error handling works
+- [ ] Database is saving data
+- [ ] Backups are configured
+- [ ] Monitoring is active
+- [ ] Documentation is updated with production URLs
+
+**When Things Go Wrong (And They Might):**
+
+Here's the truth: something will break. Maybe not today, maybe not this week, but eventually. The difference between a stressful launch and a calm one is preparation.
+
+**Have these ready:**
+1. **Rollback plan**: Know how to revert to the previous version quickly
+2. **Support contact**: Your hosting's support number or chat
+3. **Error logs access**: Know where to find them
+4. **Emergency contact**: Someone technical who can help if you're stuck
+
+### Decision: Shared Hosting vs. VPS for Initial Deployment
+
+**Date**: February 17, 2026
+**Context**: Choosing deployment infrastructure for LaunchPad API
+
+**Options Considered**:
+1. Shared hosting ($3-10/month)
+2. VPS like DigitalOcean or Linode ($20-50/month)
+3. Platform-as-a-Service like Heroku (free tier available, but scales expensive)
+4. Cloud hosting like AWS/GCP (overkill and complex)
+
+**Decision**: Shared hosting for initial launch, with clear criteria for when to upgrade
+
+**Rationale**:
+- **Shared hosting**: Perfect for 0-1000 users. No server management. Cheap. Easy.
+- **VPS**: Better performance and control, but requires Linux administration knowledge we don't have yet
+- **PaaS**: Convenient but gets expensive fast ($25+/month for production workloads)
+- **Cloud**: Massive overkill. We'd spend more time learning AWS than building our product.
+
+**Upgrade triggers** (when we'll consider moving to VPS):
+- Consistently hitting resource limits
+- Need for custom server software
+- Revenue justifies the extra cost
+- We have time to learn server administration
+
+**Trade-offs**:
+- **Pros**: Affordable, zero maintenance, quick setup, perfect for validation phase
+- **Cons**: Limited control, shared resources, can't install arbitrary software
+
+**Reversible?** Yes. Moving from shared hosting to VPS is a common growth path. CI4 makes it relatively painless since the application code doesn't change—just the server configuration.
+
+### Your API Is Live. Now What?
+
+Deployment isn't the end of the journey—it's the beginning. Your API is now a living thing that needs care and feeding.
+
+But here's the beautiful thing: you've built something real. You took an idea, learned the technology, wrote the code, and put it on the internet where anyone can use it. That's not trivial. That's impressive.
+
+The deployment process we just walked through is something many developers never fully understand. They use automated platforms that hide the complexity, then panic when something goes wrong. You now understand every piece: the files, the database, the domain, the SSL, the whole stack.
+
+That knowledge is power. It means when something breaks, you know where to look. When you need to scale, you know what to upgrade. When someone asks "how does your API work?" you can explain it from the ground up.
+
+Welcome to the production world. Your API is live. Your users are waiting. Go make something amazing.
+
+## The Art of Talking to AI: A Practical Guide to Prompt Engineering
+
+![LaunchPad API Cover](docs-graphics/cover_horizontal_en.png)
+
+Here's something that took us a while to figure out: **The way you ask AI for help matters just as much as having good documentation.** It's like the difference between asking a skilled contractor "Build me a house" versus "Build me a three-bedroom house with an open floor plan, using sustainable materials, designed for a family with young children." Same person, wildly different results.
+
+When we first started using AI assistants, we made a classic mistake. We'd type things like:
+- "Make this work"
+- "Fix this code"
+- "How do I do authentication?"
+
+And we'd get... okay-ish results. Sometimes the code worked. Sometimes it was outdated. Sometimes it was technically correct but completely wrong for our specific situation. We spent hours debugging issues that could have been avoided if we'd just asked better questions.
+
+### Why Prompt Engineering Isn't Just "Being Specific"
+
+You might think prompt engineering means using fancy technical terms or writing essays to the AI. It's not. It's about giving the AI context so it can give you relevant answers instead of generic ones.
+
+Think of it like this: If you walk into a restaurant and say "I'm hungry," the waiter has no idea whether to bring you a salad or a steak. But if you say "I'm hungry, I'm vegetarian, I love spicy food, and I'm in a hurry," now they can recommend the perfect dish.
+
+AI works the same way. The more context you provide about:
+- What you're trying to accomplish (the goal)
+- What constraints you have (the boundaries)
+- What you've already tried (the history)
+- What your project looks like (the context)
+
+...the better the AI can help you.
+
+### The Framework We Use for Every Prompt
+
+After weeks of trial and error, we developed a simple framework that dramatically improved the quality of AI assistance. We call it the **ACTS Framework** (because every acronym needs a fancy name, apparently):
+
+**A - Assign a Role**
+**C - Clarify the Context**
+**T - Specify the Task**
+**S - Set the Standards**
+
+Let me break down what each of these means with real examples from our project.
+
+#### A - Assign a Role
+
+This is the magic ingredient that most people skip. When you tell the AI to "act as" something specific, it shifts its entire perspective and knowledge base to serve that role.
+
+**Instead of:** "How do I create an API endpoint?"
+
+**Say:** "Act as a senior CodeIgniter 4 developer with 10 years of experience building secure REST APIs. I'm building an endpoint for user registration."
+
+See the difference? The first prompt gets you a generic answer that might work in any framework. The second prompt tells the AI to draw on its knowledge of CodeIgniter specifically, REST API best practices, and security considerations—all things we care deeply about.
+
+**Other role examples we use:**
+- "Act as a security expert auditing this authentication code"
+- "Act as a DevOps engineer reviewing our deployment strategy"
+- "Act as a technical writer documenting this API for mobile developers"
+- "Act as a CodeIgniter 4 core contributor reviewing this implementation"
+
+Each role triggers different knowledge and priorities. A "security expert" will flag vulnerabilities that a "developer" might overlook. A "technical writer" will suggest clearer error messages. The role shapes the response.
+
+#### C - Clarify the Context
+
+This is where you tell the AI about your specific situation. Remember, the AI doesn't know you're using CodeIgniter 4, Shield for authentication, and MySQL for your database—unless you tell it.
+
+**Instead of:** "I need to protect this route"
+
+**Say:** "I'm working on a CodeIgniter 4 project using Shield for authentication. The project structure follows CI4 conventions with controllers in app/Controllers/Api/, models in app/Models/, and routes defined in app/Config/Routes.php. I need to protect an API endpoint so only authenticated users with valid bearer tokens can access it."
+
+Now the AI knows:
+- The framework (CodeIgniter 4)
+- The auth library (Shield)
+- The directory structure
+- The specific protection mechanism (bearer tokens)
+
+It can give you exact code that fits your project instead of generic middleware examples from Laravel or Express.js.
+
+**Key context to always include:**
+- Your tech stack (framework, libraries, database)
+- Your project structure (where files live)
+- Your authentication method (session, token, JWT, etc.)
+- What you've already tried (if debugging)
+- The specific file or code you're working with
+
+#### T - Specify the Task
+
+Be crystal clear about what you want the AI to do. Vague requests get vague answers.
+
+**Instead of:** "Make this better"
+
+**Say:** "Review this controller method and:
+1. Identify any security vulnerabilities
+2. Suggest input validation improvements
+3. Recommend better error handling
+4. Show me the improved code with comments explaining each change"
+
+Now the AI has a checklist. It knows exactly what "better" means in this context.
+
+**Task specification tips:**
+- Use action verbs: "Review," "Refactor," "Explain," "Compare," "Implement"
+- Be specific about deliverables: "code," "explanation," "pros/cons list"
+- Set boundaries: "Keep it simple" or "Prioritize security over brevity"
+- Ask for multiple options: "Give me two approaches and explain when to use each"
+
+#### S - Set the Standards
+
+This is where you define what "good" looks like for your project. Different teams have different priorities—some care about performance, others about readability, others about security above all else.
+
+**Instead of:** "Write this code"
+
+**Say:** "Write this code following these standards:
+- Prioritize security and input validation over code brevity
+- Follow CodeIgniter 4 conventions and coding style
+- Include comprehensive PHPDoc comments explaining parameters and return values
+- Handle all error cases gracefully with appropriate HTTP status codes
+- Use type hints where appropriate for PHP 8.2+
+- Don't use external libraries unless absolutely necessary"
+
+Now the AI knows your values. It won't give you clever one-liners that are impossible to maintain. It won't skip error handling to make the code shorter. It understands your definition of quality.
+
+**Standards we commonly set:**
+- "Security is more important than convenience"
+- "Explain your reasoning for each significant decision"
+- "Write code that a junior developer could understand"
+- "Consider edge cases and validation"
+- "Follow the existing patterns in our codebase"
+
+### Real Examples from Our Project
+
+Let me show you actual prompts we used while building LaunchPad API. These aren't theoretical—they're copied straight from our chat history (with sensitive info removed).
+
+#### Example 1: Creating a New Endpoint
+
+**Our prompt:**
+```
+Act as a senior CodeIgniter 4 developer specializing in REST API design.
+
+Context:
+- We're building LaunchPad API using CodeIgniter 4.5.x with Shield authentication
+- Our API controllers are in app/Controllers/Api/ and extend ResourceController
+- We're using MySQL with CI4's Query Builder
+- The project follows PSR-4 autoloading and CI4 conventions
+
+Task:
+Create a controller method that handles GET requests to retrieve a paginated list of users. The endpoint should:
+1. Require authentication (bearer tokens via Shield)
+2. Support pagination parameters (page, per_page)
+3. Allow optional filtering by user status (active, inactive)
+4. Return a JSON response with proper HTTP status codes
+5. Include metadata about total records and pagination
+
+Standards:
+- Use ResourceController's built-in methods where appropriate
+- Validate all input parameters
+- Handle database errors gracefully
+- Include PHPDoc comments
+- Follow CI4's ResponseTrait patterns for consistency
+- Security is the top priority—assume all input is malicious
+```
+
+**What we got back:**
+The AI gave us a complete, production-ready method with input validation, error handling, proper pagination using CI4's built-in features, and security considerations. It explained why certain choices were made (like using Query Builder to prevent SQL injection). It took 10 seconds instead of the 30 minutes it would have taken us to write and test.
+
+#### Example 2: Debugging an Authentication Issue
+
+**Our prompt:**
+```
+Act as a CodeIgniter 4 security expert debugging an authentication problem.
+
+Context:
+- CI4 project with Shield authentication
+- We're using API tokens (not sessions)
+- The TokenAuth filter is applied to our API routes
+- Users can generate tokens via /api/auth/login successfully
+- Tokens are stored in the auth_identities table
+
+The Problem:
+When we make requests to protected endpoints with a valid token in the Authorization header (Bearer TOKEN), we get a 401 Unauthorized response. The token definitely exists in the database and isn't expired.
+
+What we've checked:
+- The Authorization header is being sent correctly (verified with Postman)
+- The token exists in auth_identities with type 'access_token'
+- The token's expires_at is null (shouldn't expire)
+- The filter is definitely being applied (we see it in the route config)
+
+Task:
+1. List the most likely causes of this issue in order of probability
+2. For each cause, explain how to verify if it's the problem
+3. Provide the specific code/config changes needed to fix it
+4. Explain why this is happening so we can prevent it in the future
+```
+
+**What we got back:**
+The AI walked us through a systematic debugging process. It turned out we had forgotten to enable the "token" authenticator in Shield's config (only "session" was enabled). The AI explained that Shield needs explicit configuration for which auth methods to use, gave us the exact config file to edit, and explained the difference between session and token authentication so we understood why this mattered.
+
+This response saved us probably 2 hours of random trial-and-error debugging.
+
+#### Example 3: Reviewing Security
+
+**Our prompt:**
+```
+Act as a security auditor reviewing our API authentication implementation.
+
+Context:
+We're building a production API that will handle sensitive user data. We've implemented Shield authentication with the following setup:
+[we pasted our configuration and key controller methods here]
+
+Task:
+Perform a security audit and tell us:
+1. What we're doing well (security strengths)
+2. What vulnerabilities exist or could exist
+3. What industry best practices we're missing
+4. Specific recommendations with code examples for any fixes needed
+5. How to test that our security is working correctly
+
+Standards:
+- Be thorough—assume this will be attacked by sophisticated actors
+- Prioritize OWASP Top 10 considerations
+- Consider both technical vulnerabilities and logic flaws
+- Explain the "why" behind each recommendation, not just the "what"
+```
+
+**What we got back:**
+The AI identified three issues we hadn't considered:
+1. We weren't rate-limiting our login endpoint (vulnerable to brute force)
+2. Our error messages were too specific, potentially leaking information about which users exist
+3. We weren't validating the strength of passwords during registration
+
+For each issue, it explained the attack vector, showed us exactly how to fix it with code, and explained why it mattered. This level of security review would have cost hundreds of dollars from a consultant. We got it in 60 seconds.
+
+### The Prompts We Use Over and Over
+
+After building LaunchPad API, we noticed we were using certain prompt patterns repeatedly. Here are our "go-to" templates:
+
+**For generating new code:**
+```
+Act as a [role] with expertise in [specific technology].
+
+Context:
+- [Brief project description]
+- [Tech stack details]
+- [Relevant file locations]
+- [Any relevant configuration]
+
+Task:
+[Specific, actionable task with numbered requirements if complex]
+
+Standards:
+- [Priority 1: usually security or performance]
+- [Code style requirements]
+- [Documentation requirements]
+- [Error handling expectations]
+```
+
+**For debugging:**
+```
+Act as an expert debugger specializing in [technology].
+
+Context:
+- [What you're building]
+- [What's supposed to happen]
+- [What's actually happening]
+- [Error messages or unexpected behavior]
+
+What I've already tried:
+1. [First thing you checked]
+2. [Second thing you checked]
+3. [Any relevant tests you ran]
+
+Task:
+1. Identify the most likely root causes
+2. Explain how to verify each one
+3. Provide the fix with code
+4. Explain why this happened to prevent it in the future
+```
+
+**For explaining concepts:**
+```
+Act as a patient technical mentor explaining [concept] to a [experience level] developer.
+
+Context:
+I'm working on [brief description] and trying to understand [specific concept]. I've read [what you've already read] but I'm still unclear on [specific confusion].
+
+Task:
+Explain [concept] in simple terms using:
+- An analogy from everyday life
+- A simple code example
+- The specific way it applies to my situation
+- Common mistakes to avoid
+
+Standards:
+- Assume I'm smart but new to this specific area
+- Don't use jargon without explaining it
+- Connect it to practical benefits (why should I care?)
+```
+
+**For comparing options:**
+```
+Act as a senior architect helping choose between technical approaches.
+
+Context:
+We're deciding between [Option A] and [Option B] for [specific use case].
+
+Current situation:
+- [Brief project context]
+- [Any constraints or requirements]
+- [Team experience level]
+- [Performance/security needs]
+
+Task:
+Compare these approaches across these dimensions:
+1. Security implications
+2. Performance characteristics
+3. Maintainability and readability
+4. Learning curve for the team
+5. Long-term scalability
+
+For each option, provide:
+- Clear pros and cons
+- When to choose this option
+- A brief code example showing the implementation
+- Any gotchas or common pitfalls
+
+Standards:
+- Be objective—don't favor one just because it's newer or cooler
+- Consider our context (we're [team situation])
+- Flag any irreversible decisions
+```
+
+### Why This Matters More Than You Think
+
+You might be thinking, "This seems like a lot of work just to ask a question." And at first, it does feel that way. Writing a detailed prompt takes 2-3 minutes instead of 10 seconds.
+
+But here's what we learned: **A good prompt saves hours.**
+
+When you write a vague prompt, you get a vague answer. Then you spend 20 minutes trying to implement it, only to realize it doesn't fit your situation. So you go back, clarify, try again. Three cycles later, you've spent an hour.
+
+Or worse, you get code that seems to work but has hidden issues—security holes, performance problems, bad practices. You don't find out until weeks later when something breaks or a user exploits a vulnerability.
+
+A detailed prompt takes 3 minutes to write but gives you exactly what you need the first time. It considers your constraints, follows your standards, and fits your project. You implement it once and it works.
+
+**The math is simple:** 3 minutes of good prompting vs. 60+ minutes of back-and-forth and debugging. Plus the peace of mind knowing you got a secure, high-quality solution.
+
+### Common Mistakes We Made (So You Don't Have To)
+
+Let me share the mistakes we made while learning this. Maybe you'll recognize some of these:
+
+**Mistake 1: Being too brief**
+- What we did: "Fix this"
+- What happened: The AI made assumptions, changed things we didn't want changed, and introduced new issues
+- The fix: Always explain what "fix" means and provide context
+
+**Mistake 2: Not specifying the role**
+- What we did: Asked general programming questions without assigning expertise
+- What happened: Got generic answers that missed framework-specific best practices
+- The fix: Always start with "Act as a [specific expert in specific technology]"
+
+**Mistake 3: Not setting priorities**
+- What we did: "Make this code better"
+- What happened: The AI optimized for brevity and created unreadable one-liners
+- What we wanted: Security and maintainability over cleverness
+- The fix: Explicitly state your priorities
+
+**Mistake 4: Asking for code without explanation**
+- What we did: "Give me the code for X"
+- What happened: Got working code but didn't understand it, couldn't modify it, couldn't debug it
+- The fix: Always ask "explain how this works" or "add comments explaining each part"
+
+**Mistake 5: Not providing file context**
+- What we did: Pasted a code snippet without saying which file it was from
+- What happened: The AI suggested imports and namespaces that didn't match our structure
+- The fix: Always mention the file path and project structure
+
+**Mistake 6: Being afraid to ask "dumb" questions**
+- What we did: Struggled with concepts we didn't understand instead of asking for clarification
+- What happened: Built features on shaky foundations, created technical debt
+- The fix: Use the "patient mentor" role and ask for explanations in simple terms. No judgment, just learning.
+
+### The Mindset Shift: AI as a Collaborative Partner
+
+Here's the philosophical shift that made all the difference for us:
+
+**Old mindset:** "AI is a tool I use to get answers"
+**New mindset:** "AI is a collaborative partner who needs context to be helpful"
+
+When you view AI as a partner, you naturally provide more context. You explain your goals, constraints, and reasoning. You have a dialogue instead of making demands.
+
+Think about how you'd work with a human developer:
+- You wouldn't just say "fix this" and walk away
+- You'd explain what's wrong, what you've tried, and what success looks like
+- You'd share your project structure and standards
+- You'd listen to their questions and provide clarification
+
+Treat AI the same way. The prompts that work best are the ones that treat AI like a knowledgeable colleague who just joined your project and needs to get up to speed.
+
+### Our Prompt Engineering Checklist
+
+Before sending any prompt to our AI assistant, we now run through this mental checklist:
+
+**Role Assignment:**
+- [ ] Did I specify what expertise the AI should use?
+- [ ] Is the role specific to my technology stack?
+- [ ] Does the role match the type of help I need (developer vs. security expert vs. architect)?
+
+**Context Provided:**
+- [ ] Did I mention the framework and libraries I'm using?
+- [ ] Did I describe my project structure?
+- [ ] Did I include relevant code or configuration?
+- [ ] If debugging, did I say what I've already tried?
+
+**Task Clarity:**
+- [ ] Is the task specific and actionable?
+- [ ] Did I break complex tasks into numbered steps?
+- [ ] Did I specify what deliverables I want (code, explanation, comparison)?
+
+**Standards Set:**
+- [ ] Did I state my priorities (security, performance, readability)?
+- [ ] Did I mention any constraints or requirements?
+- [ ] Did I specify coding style or documentation expectations?
+
+**Tone Check:**
+- [ ] Am I treating AI like a collaborative partner?
+- [ ] Did I provide enough detail for the AI to understand my situation?
+- [ ] Would a human developer understand what I'm asking for?
+
+If we can check all these boxes, we get great results almost every time.
+
+### Putting It All Together: A Complete Example
+
+Let me show you one final, comprehensive example that demonstrates everything we've learned.
+
+**The Situation:**
+We needed to implement a password reset feature. This is security-critical, so we wanted to be extra careful.
+
+**Our Prompt:**
+```
+Act as a senior CodeIgniter 4 security expert with deep knowledge of Shield authentication and modern security best practices.
+
+Context:
+We're building LaunchPad API, a production REST API using:
+- CodeIgniter 4.5.x
+- Shield for authentication (currently using tokens)
+- MySQL database
+- PHP 8.2+
+- Following CI4 conventions and PSR standards
+
+Our project structure:
+- Controllers: app/Controllers/Api/
+- Models: app/Models/
+- Config: app/Config/
+- Routes: app/Config/Routes.php
+
+Current authentication setup:
+[We pasted our Shield configuration here]
+
+The Task:
+Implement a secure password reset flow for our API that:
+1. Allows users to request a password reset via their email
+2. Generates a secure, time-limited token
+3. Sends an email with a reset link
+4. Validates the token when user clicks the link
+5. Allows setting a new password with validation
+6. Invalidates the token after use or expiration
+
+Security Requirements (in priority order):
+1. Prevent timing attacks (don't reveal if email exists)
+2. Tokens must be cryptographically secure and time-limited
+3. Prevent replay attacks (token can only be used once)
+4. Validate new password strength
+5. Log all password reset attempts for security monitoring
+6. Rate limit reset requests to prevent abuse
+
+Code Standards:
+- Use Shield's built-in features where possible
+- Follow CI4's validation and response patterns
+- Include comprehensive PHPDoc comments
+- Handle all error cases gracefully
+- Use type hints for PHP 8.2+
+- Assume all input is malicious
+
+Deliverables:
+1. The controller method(s) for handling reset requests
+2. Any model changes needed
+3. Route configuration
+4. Shield configuration updates
+5. A brief explanation of the security measures implemented
+6. Testing suggestions to verify the security
+```
+
+**The Result:**
+The AI gave us a complete, production-ready implementation with:
+- Secure token generation using CI4's security features
+- Timing-attack-resistant email lookup
+- Proper token expiration handling
+- Rate limiting implementation
+- Comprehensive validation
+- Clear error messages that don't leak information
+- Detailed comments explaining each security decision
+
+It took us 5 minutes to review and adapt to our exact needs. Without good prompting, we might have gotten a basic implementation that "worked" but had security holes we'd discover months later when someone exploited them.
+
+### The Bottom Line on Prompt Engineering
+
+Prompt engineering isn't about manipulating AI or using special keywords. It's about clear communication—the same skill you use when working with human colleagues.
+
+The best prompts:
+- Set clear expectations (role assignment)
+- Provide necessary context (clarify the situation)
+- Define specific goals (specify the task)
+- Establish quality standards (set the bar)
+
+When you get a bad response from AI, it's usually not because the AI is bad—it's because the prompt was incomplete. The AI gave you exactly what you asked for; you just didn't ask for the right thing.
+
+**Our advice:** Spend 3 minutes writing a detailed prompt, save 3 hours of debugging. Treat AI like the knowledgeable partner it is, give it the context it needs, and you'll be amazed at the quality of help you receive.
+
+This is the final piece of the Vibe Coding methodology. With good documentation, trained AI skills, proper libraries, and effective prompting, you have everything you need to build production software at a pace that would seem impossible to traditional developers.
+
+Now let's talk about how we document everything so our future selves (and our AI assistants) can understand the reasoning behind every decision.
 
 ## The AGENTS.md Philosophy: Documenting Everything
 
